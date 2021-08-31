@@ -1,0 +1,373 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- font-family: 'Press Start 2P', cursive; -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><!-- font-family: 'VT323', monospace; -->
+
+
+
+
+
+  <meta charset="utf-8">
+
+  <title>The Bunker</title>
+  <meta name="description" content="oki game v3">
+  <meta name="author" content="Jonathan Mancor || okiDev">
+
+
+
+
+  <link rel="stylesheet" href="css/oki4.css?v=1.0">
+
+
+
+
+
+
+
+
+</head>
+
+<body onload="initializeDuelPage()">
+
+
+
+
+
+
+
+
+
+
+  <span id='interactionPause'></span>
+
+  <section id='battleEndMenu'>
+
+
+    <div class="battleEndTerminal">
+
+      <div class="battleEndBtnCntr">
+        <table>
+          <tr>
+            <td><h1>Press To Start</h1></td>
+          </tr>
+          <tr>
+            <td><button id="battleEndBtn1" type="button" name="button">oki.exe</button></td>
+          </tr>
+        </table>
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+  <span  id="hitOutcomeDisplay"><p>hit</p><strong></strong></span>
+
+
+  <section id="messageNotifCntr">
+      <h2></h2>
+      <p></p>
+  </section>
+
+
+
+
+
+  <section id="enemySlotIndicate">
+    <div class="slotIndicator">
+      <img src="img/terminal/gameIcons/enemySlotIndicator.png" alt="slotIndicator">
+    </div>
+    <div class="slotIndicator">
+      <img src="img/terminal/gameIcons/enemySlotIndicator.png" alt="slotIndicator">
+    </div>
+    <div class="slotIndicator">
+      <img src="img/terminal/gameIcons/enemySlotIndicator.png" alt="slotIndicator">
+    </div>
+  </section>
+
+
+  <section id="hitBoxCntr">
+      <div class="hitBoxes" onclick='hitHeadCal();'>
+        <p>Head</p>
+        <button id="hitHead" name="hitBtn"></button>
+      </div>
+      <div class="hitBoxes" onclick='hitTorsoCal();'>
+        <p>Torso</p>
+        <button id="hitTorso" name="hitBtn"></button>
+      </div>
+      <div class="hitBoxes" onclick='hitArmRCal();'>
+        <p>Right Arm</p>
+        <button id="hitArmR" name="hitBtn"></button>
+      </div>
+      <div class="hitBoxes" onclick='hitArmLCal();'>
+        <p>Left Arm</p>
+        <button id="hitArmL" name="hitBtn"></button>
+      </div>
+      <div class="hitBoxes" onclick='hitLegRCal();'>
+        <p>Right Leg</p>
+        <button id="hitLegR" name="hitBtn"></button>
+      </div>
+      <div class="hitBoxes" onclick='hitLegLCal();'>
+        <p>Left Leg</p>
+        <button id="hitLegL" name="hitBtn"></button>
+      </div>
+  </section>
+
+  <section id="hitSelfCntr">
+      <div class="hitBoxes" onclick='hitSelfCal();'>
+        <p>Self</p>
+        <table id="hitSelf">
+          <tr>
+            <td class="hitSelfStatName">stat 1</td>
+            <td class="hitSelfStatVal">stat 2</td>
+          </tr>
+          <tr>
+            <td class="hitSelfStatName">stat 1</td>
+            <td class="hitSelfStatVal">stat 2</td>
+          </tr>
+          <tr>
+            <td class="hitSelfStatName"></td>
+            <td class="hitSelfStatVal"></td>
+          </tr>
+
+        </table>
+      </div>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section id='terminalFrame'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Enemy Info Tab=============================================================-->
+
+
+
+<!--EnemyDisplay=============================================================-->
+
+
+        <section id="enemyDisplayTab">
+
+          <div id="enemySlot1">
+            <span id="enemyNameBar"><p>1</p><strong></strong></span>
+            <span id="enemyHpBar"><progress class="hpBar" value = "" max = ""/></progress><p>1</p></span>
+            <span id="enemyRotBar"><progress class="rotBar"value = "" max = ""/></progress><p>1</p></span>
+                <img id='enemyStand1' onclick='' src="" alt="uki1">
+          </div>
+
+          <div id="enemySlot2">
+            <span id="enemyNameBar"><p>1</p></span>
+            <span id="enemyHpBar"><progress class="hpBar" value = "65" max = ""/></progress><p>1</p></span>
+            <span id="enemyRotBar"><progress class="rotBar"value = "65" max = "100"/></progress><p>1</p></span>
+                <img id='enemyStand2' onclick='' src="" alt="uki1">
+          </div>
+
+          <div id="enemySlot3">
+            <span id="enemyNameBar"><p>1</p></span>
+            <span id="enemyHpBar"><progress class="hpBar" value = "65" max = ""/></progress><p>1</p></span>
+            <span id="enemyRotBar"><progress class="rotBar"value = "65" max = "100"/></progress><p>1</p></span>
+                <img id='enemyStand3' onclick='' src="" alt="uki1">
+          </div>
+
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+
+<!--action window=============================================================
+===========================================================================
+========================================================================-->
+
+
+<section id='actionMenu'>
+
+  <div id="actionBtnCntr">
+    <button type="button" name="actionBtn"></button>
+    <button type="button" name="actionBtn"></button>
+    <button type="button" name="actionBtn"></button>
+    <button type="button" name="actionBtn"></button>
+    <button type="button" name="actionBtn"></button>
+    <button type="button" name="actionBtn"></button>
+  </div>
+
+  <div id="playerProgressBarMenu">
+    <aside>
+
+      <button id="battleMenuBackBtn" type="button" name="button">X</button>
+
+      <figure>
+        <span id="playerHpBar"><progress class="hpBar" value = "65" max = "100"/></progress><p>1</p></span>
+        <span id="playerRotBar"><progress class="rotBar"value = "65" max = "100"/></progress><p>1</p></span>
+      </figure>
+      <input id="staminaBar"></input>
+    </aside>
+
+    <div id="battleMoveDataTab">
+      <article class="battleMoveData">
+
+        <span><p>Name:</p><p class="moveDataName">Insert</p></span>
+        <span><p>Type:</p><p class="moveDataType">Insert</p></span>
+        <span><p class="moveDataDesc">Insert</p></span>
+
+      </article>
+
+      <article class="battleMoveDesc">
+        <img class='moveDataIcon' src="" alt="">
+      </article>
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <div id="battleMenuCntr">
+      <button type="button" name="moveBtn"></button>
+      <button type="button" name="moveBtn"></button>
+      <button type="button" name="moveBtn"></button>
+      <button type="button" name="moveBtn"></button>
+  </div>
+
+
+
+
+
+
+  <figure id="playerBattleControls">
+
+    <table id="offTurnStats">
+      <tr>
+        <td>ATT</td>
+        <td> <input id="moveAttVal" type="text" value="" readonly></td>
+      </tr>
+      <tr>
+        <td>DEF</td>
+        <td> <input id="moveDefVal" type="text" value="" readonly></td>
+      </tr>
+      <tr>
+        <td>CRT</td>
+        <td> <input id="moveCrtVal" type="text" value="" readonly></td>
+      </tr>
+    </table>
+
+
+
+
+
+
+    <table id="onTurnStats">
+      <tr>
+        <td>ACC</td>
+        <td> <input id="moveAccVal" type="text" value="" readonly></td>
+      </tr>
+      <tr>
+        <td>DDG</td>
+        <td> <input id="moveDdgVal" type="text" value="" readonly></td>
+      </tr>
+      <tr>
+        <td>SPD</td>
+        <td> <input id="moveSpdVal" type="text" value="" readonly></td>
+      </tr>
+    </table>
+  </figure>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  <audio id="okiClickSound"><source src="audio/okiClickSound.mp3" type="audio/mpeg"></audio>
+
+<!--battle music themes-->
+  <audio id="deadlyDuel" loop><source src="audio/battleMusicThemes/deadlyDuel.wav" type="audio/wav"></audio>
+
+
+<!--Move Sound effects-->
+  <audio id="powerSwingHit"><source src="audio/powerSwingHit.wav" type="audio/mpeg"></audio>
+  <audio id="powerSwingMiss"><source src="audio/powerSwingMiss.wav" type="audio/mpeg"></audio>
+  <audio id="powerSwingCrit"><source src="audio/powerSwingCrit.wav" type="audio/mpeg"></audio>
+
+
+
+  <script src="js/jquery-3.5.1.js"></script>
+  <script src="js/statMenuScript.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/dynamicEnemyStatScript.js"></script>
+  <script src="js/wpnMoveScript.js"></script>
+  <script src="js/battleScript.js"></script>
+  <script src="js/musicScript.js"></script>
+</body>
+</html>

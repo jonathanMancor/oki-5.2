@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/oki4.css">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- font-family: 'Press Start 2P', cursive; -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><!-- font-family: 'VT323', monospace; -->
+
+
+  <title>Title Here</title>
+</head>
+<body onload="onloadExtrArmyStatParameters()">
+
+<section id="terminalFrame">
+
+<section id="camera">
+  <canvas id="story1Canvas">
+    Your browser does not support the HTML canvas tag.
+  </canvas>
+
+  <canvas id="playerCanvas">
+    Your browser does not support the HTML canvas tag.
+  </canvas>
+
+  <canvas id="objectCanvas">
+    Your browser does not support the HTML canvas tag.
+  </canvas>
+
+
+
+  <canvas id="mapCanvas">
+    Your browser does not support the HTML canvas tag.
+  </canvas>
+
+  <canvas id="worldMapCanvas"></canvas>
+</section>
+
+
+<section id="stage">
+  <img src="img/themes/titleCard.png" alt="">
+</section>
+
+
+
+
+<!--User Menu tab=============================================================-->
+      <section id='playerStatMenu'>
+<!--col 1-->
+          <section id='playerDesc'>
+
+
+            <figure id='playerClassDisplay'>
+              <img id="playerCharImg" src="" alt="user class img">
+            </figure>
+
+            <figcaption id='charNameCreate'>
+              <button id='prevClass' type="button" name="button"><</button>
+               <input id='playerNameInput' type='text' placeholder='name' value=''></input>
+               <button id='nextClass' type="button" name="button">></button>
+            </figcaption>
+
+            <figcaption id='charNameLoad'>
+               <input id='playerNameDisplay' readonly type='text' placeholder='name' value=''></input>
+            </figcaption>
+
+
+            <div id='playerMoveSetCntr'>
+              <button id="move0" type="button" name="moveBtn"></button>
+              <button id="move1" type="button" name="moveBtn"></button>
+              <button id="move2" type="button" name="moveBtn"></button>
+              <button id="move3" type="button" name="moveBtn"></button>
+            </div>
+
+
+
+
+            <div id='statOutput'>
+
+              <table>
+                <tr id="outputWindow1">
+                  <td><img src="img/icons/stats/hpStat.png" alt=""></td>
+                  <td><input readonly type='text' id='hpStatValue' readonly></input></td>
+                </tr>
+                <tr id="outputWindow2">
+                  <td><img src="img/icons/stats/spStat.png" alt=""></td>
+                  <td><input readonly type='text' id='spStatValue' readonly></input></td>
+                </tr>
+                <tr id="outputWindow3">
+                  <td><img src="img/icons/stats/rpStat.png" alt=""></td>
+                  <td><input readonly type='text' id='rpStatValue' readonly></input></td>
+                </tr>
+              </table>
+
+
+              <table>
+                <tr>
+                  <td><img src="img/icons/stats/attStat.png" alt=""></td>
+                  <td><input readonly type='text' id='attStatValue' readonly></input></td>
+                </tr>
+                <tr>
+                  <td><img src="img/icons/stats/dexStat.png" alt=""></td>
+                  <td><input readonly type='text' id='crtStatValue' readonly></input></td>
+                </tr>
+                <tr>
+                  <td><img src="img/icons/stats/accStat.png" alt=""></td>
+                  <td><input readonly type='text' id='accStatValue' readonly></input></td>
+                </tr>
+              </table>
+
+
+
+
+
+
+              <table>
+                <tr>
+                  <td><img src="img/icons/stats/defStat.png" alt=""></td>
+                  <td><input readonly type='text' id='defStatValue' readonly></input></td>
+                </tr>
+                <tr>
+                  <td><img src="img/icons/stats/ddgStat.png" alt=""></td>
+                  <td><input readonly type='text' id='ddgStatValue' readonly></input></td>
+                </tr>
+                <tr>
+                  <td><img src="img/icons/stats/spdStat.png" alt=""></td>
+                  <td><input readonly type='text' id='spdStatValue' readonly></input></td>
+                </tr>
+              </table>
+
+            </div>
+
+
+
+          </section>
+
+
+<!--col 2-->
+            <section id="statInteract">
+
+              <table id="playerMetaData">
+                <tr>
+                  <td>LEVEL:</td>
+                  <td><input readonly id="playerLevelValue" type='text' id='expStatValue' readonly></input></td>
+
+                  <td>SPORES:</td>
+                  <td><input readonly type='text' id='sporeStatValue' readonly></input></td>
+                  <td id="classNameDisplay">className</td>
+                </tr>
+              </table>
+
+              <table id="statDisplay">
+                <tr id="statWindow1">
+                  <td><img src="img/icons/stats/hpStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='healthStatValue' readonly></input></td>
+                  <td>Health</td>
+                  <td id='plusBtnCell'><button onclick='plusHealth()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow2">
+                  <td><img src="img/icons/stats/spStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='staminaStatValue' readonly></input></td>
+                  <td>Stamina</td>
+                  <td id='plusBtnCell'><button onclick='plusStamina()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow3">
+                  <td><img src="img/icons/stats/rpStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='rotStatValue' readonly></input></td>
+                  <td>Rot</td>
+                  <td id='plusBtnCell'><button onclick='plusRot()'>+</button></td>
+                </tr>
+
+
+
+
+
+                <tr id="statWindow4">
+                  <td><img src="img/icons/stats/attStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='strengthStatValue' readonly></input></td>
+                  <td>Strength</td>
+                  <td id='plusBtnCell'><button onclick='plusStrength()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow5">
+                  <td><img src="img/icons/stats/dexStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='dexterityStatValue' readonly></input></td>
+                  <td>Dexterity</td>
+                  <td id='plusBtnCell'><button onclick='plusDexterity()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow6">
+                  <td><img src="img/icons/stats/accStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='perceptionStatValue' readonly></input></td>
+                  <td>Perception</td>
+                  <td id='plusBtnCell'><button onclick='plusPerception()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow7">
+                  <td><img src="img/icons/stats/defStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='vigorStatValue' readonly></input></td>
+                  <td>Vigor</td>
+                  <td id='plusBtnCell'><button onclick='plusVigor()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow8">
+                  <td><img src="img/icons/stats/ddgStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='agilityStatValue' readonly></input></td>
+                  <td>Agility</td>
+                  <td id='plusBtnCell'><button onclick='plusAgility()'>+</button></td>
+                </tr>
+
+                <tr id="statWindow9">
+                  <td><img src="img/icons/stats/spdStat.png" alt="storage icon"></td>
+                  <td><input readonly type='text' id='luckStatValue' readonly></input></td>
+                  <td>Speeds</td>
+                  <td id='plusBtnCell'><button onclick='plusLuck()'>+</button></td>
+                </tr>
+              </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--stat butons
+              <div id="statSaveBtnCntr">
+                <button id='confirmStatsBtn' onclick='saveVar(); saveUserClass();'type="button" name="dateiBtn">oki</button>
+                <button id='clearSaveBtn' onclick='clearVar();'type="button" name="dateiBtn">clear</button>
+              </div>
+-->
+
+            </section>
+
+
+<!--col 3-->
+            <section id='userInfotab'>
+
+              <div id='classDesc'>
+                <h1>Class Name</h1>
+                <p></p>
+              </div>
+
+
+
+              <div id='statDesc'>
+                <figure>
+                    <img src="" alt="statIcon">
+                </figure>
+
+                <article class="statDescription">
+                  <h1>Stat Name</h1>
+                  <p>Stat Descrption</p>
+                </article>
+
+                <table>
+                  <tr>
+                    <td>STAT</td>
+                    <td>VALUE</td>
+                  </tr>
+                  <tr>
+                    <td>STAT</td>
+                    <td>VALUE</td>
+                  </tr>
+                </table>
+
+                <article class="fungusDescription">
+                  <h2>( Fungus )</h2>
+                  <p>Stat Descrption</p>
+                </article>
+              </div>
+            </section>
+</section>
+
+<section id="playerRepository" class="terminalRoom">
+  <main id='playerRepoScreen'>
+    <figure>
+      <img src="img/icons/wpn/greatsword.png" alt="">
+      <table id="repoWpnStats">
+        <tr>
+          <td><img src="img/icons/stats/attStat.png" alt=""></td>
+          <td><input type="text" name="" value="0"></td>
+
+          <td><img src="img/icons/stats/dexStat.png" alt=""></td>
+          <td><input type="text" name="" value="0"></td>
+
+          <td><img src="img/icons/stats/accStat.png" alt=""></td>
+          <td><input type="text" name="" value="0"></td>
+        </tr>
+      </table>
+    </figure>
+    <article>
+      <div class="col1">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+      </div>
+      <div class="col2">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+      </div>
+      <div class="col3">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+  </main>
+
+  <main id='playerEquipScreen'>
+    <figure>
+      <img src="img/terminal/classes/turmClass.png" alt="">
+    </figure>
+    <article>
+      <div class="col1">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotPattern.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotHelmet.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotColor.png" alt="">
+        </figure>
+      </div>
+      <div class="col2">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotWpn2.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotArmor.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotWpn1.png" alt="">
+        </figure>
+      </div>
+      <div class="col3">
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotDDrive.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotBoots.png" alt="">
+        </figure>
+        <figure class="equipSlot">
+          <img src="img/icons/equipSlots/equipSlotPlugin.png" alt="">
+        </figure>
+      </div>
+    </article>
+  </main>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="terminalMenu" class='terminalRoom'>
+  <h1>Terminal Menu</h1>
+
+  <div id="tmCol-privateQuarters"class="terminalMenuCol">
+    <span>
+      <h2 id="terminalLocation">*</h2>
+      <button  id="tmBtn-privateQuarters" type="button" name="terminalMenu"><h2>Private Quarters -------</h2></button>
+    </span>
+
+    <span id="tmBtnCntr">
+      <button id="remoteAccessBtn" type="button" name="terminalMenu">*  Remote Access  *</button>
+      <button id="travelBtn" type="button" name="terminalMenu">*  Travel  *</button>
+    </span>
+  </div>
+
+
+
+  <div id="tmCol-commandCenter"class="terminalMenuCol">
+    <span>
+      <h2 id="terminalLocation">*</h2>
+      <button  id="tmBtn-commandCenter" type="button" name="terminalMenu"><h2>Command Center ---------</h2></button>
+    </span>
+
+    <span id="tmBtnCntr">
+      <button id="remoteAccessBtn" type="button" name="terminalMenu">*  Remote Access  *</button>
+      <button id="travelBtn" type="button" name="terminalMenu">*  Travel  *</button>
+    </span>
+  </div>
+
+  <div id="tmCol-courtyard"class="terminalMenuCol">
+    <span>
+      <h2 id="terminalLocation">*</h2>
+      <button  id="tmBtn-courtyard" type="button" name="terminalMenu"><h2>Courtyard --------------</h2></button>
+    </span>
+
+    <span id="tmBtnCntr">
+      <button id="remoteAccessBtn" type="button" name="terminalMenu">*  Remote Access  *</button>
+      <button id="travelBtn" type="button" name="terminalMenu">*  Travel  *</button>
+    </span>
+  </div>
+
+  <div id="tmCol-gouvernment"class="terminalMenuCol">
+    <span>
+      <h2 id="terminalLocation">*</h2>
+      <button  id="tmBtn-courtyard" type="button" name="terminalMenu"><h2>Government Hall --------</h2></button>
+    </span>
+
+    <span id="tmBtnCntr">
+      <button id="remoteAccessBtn" type="button" name="terminalMenu">*  Remote Access  *</button>
+      <button id="travelBtn" type="button" name="terminalMenu">*  Travel  *</button>
+    </span>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="bunkerCourtyard">
+  <aside id="armyOverview">
+
+    <table>
+      <tr>
+        <td><img src="img/icons/units/infantry.png" alt="unitTypeIcon"></td>
+        <td><p>Garrison</p></td>
+        <td><input readonly id='garrisonValue' type="text" name="" value="3"></td>
+        <td><button id="resetArmyBtn" type="button" name="button">O</button></td>
+      </tr>
+    </table>
+
+    <h1>Divisions</h1>
+
+    <table>
+      <tr>
+        <td><img src="img/icons/units/infantry.png" alt=""></td>
+        <td><p>Light Infantry</p></td>
+        <td><button id="minusLightInf" type="button" name="button">-</button></td>
+        <td><button id="plusLightInf" type="button" name="button">+</button></td>
+        <td><input readonly  id='lightInfValue' type="text" name="" value="3"></td>
+      </tr>
+
+      <tr>
+        <td><img src="img/icons/units/infantry.png" alt=""></td>
+        <td><p>Heavy Infantry</p></td>
+        <td><button id="minusHeavyInf" type="button" name="button">-</button></td>
+        <td><button id="plusHeavyInf"type="button" name="button">+</button></td>
+        <td><input readonly  id='heavyInfValue' type="text" name="" value="3"></td>
+      </tr>
+
+      <tr>
+        <td><img src="img/icons/units/riflemen.png" alt=""></td>
+        <td><p>Riflemen</p></td>
+        <td><button id="minusRifle1" type="button" name="button">-</button></td>
+        <td><button id="plusRifle1"type="button" name="button">+</button></td>
+        <td><input readonly  id='riflemenValue' type="text" name="" value="3"></td>
+      </tr>
+
+      <tr>
+        <td><img src="img/icons/units/motCav.png" alt=""></td>
+        <td><p>Motorized Cavalry</p></td>
+        <td><button id="minusMotCav1" type="button" name="button">-</button></td>
+        <td><button id="plusMotCav1"type="button" name="button">+</button></td>
+        <td><input readonly  id='motCavValue' type="text" name="" value="3"></td>
+      </tr>
+
+      <tr>
+        <td><img src="img/icons/units/armCav.png" alt=""></td>
+        <td><p>Armored Cavalry</p></td>
+        <td><button id="minusArmCav1" type="button" name="button">-</button></td>
+        <td><button id="plusArmCav1"type="button" name="button">+</button></td>
+        <td><input readonly  id='armCavValue' type="text" name="" value="3"></td>
+      </tr>
+
+      <tr>
+        <td><img src="img/icons/units/tank.png" alt=""></td>
+        <td><p>tank</p></td>
+        <td><button id="minusTank1" type="button" name="button">-</button></td>
+        <td><button id="plusTank1"type="button" name="button">+</button></td>
+        <td><input readonly  id='tankValue' type="text" name="" value="3"></td>
+      </tr>
+    </table>
+  </aside>
+
+
+
+
+  <main id='formationOverview'>
+    <h1>Formation</h1>
+    <section id='armyLeftFlank' class="armyFlank">
+      <button type="button" name="armyFlankBtn">?</button>
+      <div id='armyPosLr'class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>left Rearguard</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id="armyPosLc" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Left Center</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id="armyPosLf" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>left frontline</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+      </div>
+  </section>
+
+
+
+
+
+    <section id="armyCenterFlank" class="armyFlank">
+      <button type="button" name="armyFlankBtn">?</button>
+      <div id="armyPosCr" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Center Rearguard</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id="armyPosCc" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Center</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id='armyPosCf' class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Center Vanguard</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+
+    <section id="armyRightFlank" class="armyFlank">
+      <button type="button" name="armyFlankBtn">?</button>
+      <div id="armyPosRr" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Right Rearguard</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id="armyPosRc" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Right Center</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+
+      </div>
+
+      <div id="armyPosRf" class="unitSlot">
+        <figure>
+          <figcaption>
+            <p>Right Frontline</p>
+            <img src="img/icons/units/empty.png" alt="unitTypeIcon">
+          </figcaption>
+          <div class="armyPosUnitSelect">
+            <img src="img/icons/units/infantry.png" alt="">
+            <img src="img/icons/units/riflemen.png" alt="">
+            <img src="img/icons/units/motCav.png" alt="">
+            <img src="img/icons/units/armCav.png" alt="">
+            <img src="img/icons/units/tank.png" alt="">
+            <img src="img/icons/units/empty.png" alt="">
+          </div>
+        </figure>
+        <figure>
+          <img src="img/icons/armySlots/empty.png" alt="">
+        </figure>
+
+        <aside class="amrySlotStats">
+          <figure>
+            <span>
+              <img src="img/Icons/stats/hpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/attStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/defStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/spStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/dexStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/ddgStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+
+          <figure>
+            <span>
+              <img src="img/Icons/stats/rpStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/accStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+            <span>
+              <img src="img/Icons/stats/spdStat.png" alt=""><input readonly type="text" class="unitSlotStats" value="0">
+            </span>
+          </figure>
+        </aside>
+      </div>
+    </section>
+  </main>
+</section>
+
+
+
+<section id="bunkerGovernment" class="terminalRoom">
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="actionMenu">
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+  <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+</section>
+
+
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/masterScript.js"></script>
+<script src="js/canvasScript.js"></script>
+<script src="js/terminalScript.js"></script>
+<script src="js/statMenuScript.js"></script>
+<script src="js/armyStatScript.js"></script>
+<script src="js/wpnMoveScript.js"></script>
+</body>
+</html>

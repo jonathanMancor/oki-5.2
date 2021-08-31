@@ -1,0 +1,1705 @@
+
+
+*{
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: black;
+  font-family: 'VT323', monospace;
+  font-size: 1.03em;
+}
+
+body, html{
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+
+}
+
+button{
+  background: black;
+  font-size: 1.2em;
+  border: none;
+}
+button[name='actionMenuBtn']{
+  width: 20%;
+  background: black;
+  height: 50px;
+  border: 4px solid;
+  margin: auto 2% auto 2%;
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
+  justify-content: center;
+}
+button p:nth-child(1){
+  font-size: 1em;
+  font-family: 'VT323', monospace;
+  margin: 5px 3%;
+}
+
+button p:nth-child(2){
+  font-size: 0.7em;
+  font-family: 'VT323', monospace;
+  margin: 10px 0;
+}
+
+
+
+button[name='armyFlankBtn']{
+  width: 20px;
+  height: 100%;
+  border: 1px solid;
+}
+
+
+input{
+  text-align: center;
+  width: 40px;
+  margin: 3px;
+  border: 1px solid;
+}
+
+
+
+
+
+.terminalRoom{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+
+/*scrollbar========================================*/
+*::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+
+
+
+*::-webkit-scrollbar-track {
+  background: none;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #C2C2C2;    /* color of the scroll thumb */
+  border-radius: 5px;       /* roundness of the scroll thumb */
+  border: 3px solid black;  /* creates padding around scroll thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: white;    /* color of the scroll thumb */
+
+}
+
+
+
+
+#bfCamera::-webkit-scrollbar {
+  height: 10px;               /* width of the entire scrollbar */
+}
+
+
+#playerRepoScreen article::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+  height: 12px;
+}
+
+
+
+/*fonts========================================*/
+th , h1, h2, h3{
+  font-weight: normal;
+}
+
+h1{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5em;
+}
+
+h2{
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
+}
+
+
+input{
+  font-family: 'VT323', monospace;
+  border: none;
+  font-size: 1.2em;
+}
+
+
+
+
+
+
+
+#terminalFrame{
+  width: 90%;
+  height: 85%;
+  min-width: 920px;
+  min-height: 500px;
+  max-height: 620px;
+  background: none;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 1400px;
+  margin: 20px auto 0 auto;
+  border: 6px solid;
+  border-top: 26px solid;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+#camera{
+  overflow: hidden;
+  background: none;
+  position: relative;
+  margin: auto;
+}
+
+
+
+#camera canvas{
+  position: absolute;
+  background: none;
+}
+
+#playerCanvas{
+  z-index: 10;
+}
+#mapCanvas{
+  z-index: 5;
+}
+
+#mapCanvas{
+  z-index: 6;
+}
+
+
+
+
+
+
+
+
+
+
+#actionMenu{
+  width: 90%;
+  min-width: 920px;
+  height: 200px;
+
+  border: 6px solid;
+  border-top: 0px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+
+/*Battlefield menu-------------------------------*/
+
+
+#battlefieldMenuCntr{
+  width: 60%;
+  height: 60%;
+  margin: 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#battlefieldMenuCntr button{
+  max-width: 500px;
+  width: 45%;
+  min-width: 100px;
+  height: 45%;
+  margin: auto;
+  border: 3px solid;
+}
+
+
+#battleMenuCntr{
+  width: 33%;
+  flex-wrap: wrap;
+  margin: 0% 2% 0 2%;
+}
+
+
+
+
+#armyHealthCntr,#enemyHealthCntr{
+  height: 100%;
+  width: 10%;
+  min-width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#armyHealthCntr h2, #enemyHealthCntr h2{
+  width: 100%;
+}
+
+.divHealth{
+  height: 20%;
+  width: 23%;
+  border: 3px solid;
+  margin: auto;
+  font-size: 1.6em
+}
+
+
+
+
+#playerStatMenu, #bunkerCourtyard, #stage, #terminalMenu, #playerRepository, #bunkerGovernment{
+  display: none;
+}
+
+
+#stage img{
+  margin: 5% auto;
+}
+
+
+/*Character Selection========================================*/
+/*Frame-----------------------*/
+#playerStatMenu > section, #enemyStatMenu > section{
+  width: 33.333%;
+  height: 100%;
+  float: left;
+  font-family: 'VT323', monospace;
+  background: black;
+  margin: 0 auto;
+
+}
+
+#playerStatMenu{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#playerStatMenu input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+  background: black;
+}
+
+
+#enemyStatMenu  input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+}
+
+/*col 1-----------------------*/
+
+
+#playerClassDisplay {
+  width: 90%;
+  height: 45%;
+  margin: 40px auto 30px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+#playerCharImg{
+  object-fit: contain;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+#playerDesc{
+  overflow-y: scroll;
+}
+
+#playerDesc figcaption{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+#playerDesc figcaption input{
+  min-width: 200px;
+  text-align: center;
+  font-size: 1.5em;
+
+}
+
+
+
+
+/*move set style*/
+#playerMoveSetCntr{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+#playerMoveSetCntr button{
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  border: 3px solid;
+  margin: 5px;
+}
+
+/*col 2-----------------------*/
+#statDisplay{
+  width: 250px;
+  margin: 10px auto;
+}
+
+#playerMetaData{
+  border-bottom: 1px solid white;
+  margin: auto;
+  min-width: 250px;
+  width: 75%;
+}
+
+#playerMetaData input{
+  text-align: center;
+}
+
+#playerMetaData > tbody > tr > td:nth-child(-n+4){
+  padding-right: 5px;
+}
+
+#classNameDisplay{
+  text-transform: uppercase;
+}
+
+
+#statDisplay:nth-child(-n+2) > tbody > tr > td:nth-child(3){
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 10px;
+  font-size: 0.7em;
+  padding-left: 5px;
+}
+
+#statDisplay:nth-child(-n+2) input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+}
+
+#statDisplay > tbody > tr:nth-child(3) > td{
+  padding-bottom: 15px;
+}
+
+#statDisplay > tbody > tr:nth-child(6) > td{
+  padding-bottom: 15px;
+}
+
+#statInteract{
+overflow-y: scroll;
+overflow-x: hidden;
+}
+
+#statInteract > div{
+  display: flex;
+  justify-content: center;
+  margin: 2% auto;
+}
+#statInteract > div > button {
+  border: 1px solid white;
+  min-width: 100px;
+  width: 20%;
+  height: 30px;
+}
+
+
+
+#statInteract img{
+  width: 30px;
+  padding: 5px;
+  margin-right: 25px;
+  border: 1px solid white;
+  border-radius: 5px;
+
+}
+
+#statInteract button{
+  margin-left: 20px;
+}
+
+
+
+
+
+#statOutput{
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 5px;
+  width: 90%;
+  margin: 20px 5% 20px 5%;
+}
+
+#statOutput table{
+  width: 20%;
+  margin: auto 3% auto 3%;
+}
+
+
+
+#statOutput table:nth-child(-n+2){
+  border-right: 1px solid white;
+}
+
+#statOutput img{
+  border: none;
+  width: 32px;
+  padding: 0;
+}
+
+
+#statOutput input{
+  margin-left: 0px;
+}
+#statOutput > table > tbody > tr > td:nth-child(1){
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+}
+
+/*col 3-----------------------*/
+#userInfotab{
+  overflow-y: scroll;
+}
+
+#userInfotab div{
+  margin: 2% auto 6% auto;
+}
+
+#statDescHeader{
+  display: flex;
+  margin: auto;
+}
+
+#statDesc figure{
+  width: 80%;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: url(../img/terminal/statIcons/statBg.png) repeat center;
+  background-size: contain;
+}
+
+#statDesc figure img{
+  width: 20%;
+  margin: 2% 40% 2% 40%;
+}
+
+#statDesc article{
+  margin-top: 20px;
+}
+
+#statDesc article :is(h1,h2){
+  margin-bottom: 5px;
+}
+
+#statDesc p, #classDesc > p{
+  width: 80%;
+}
+#statDesc table{
+  margin: 2% 0;
+}
+
+/*basic user info========================================*/
+#userBasicInfo  {
+  width: 100%;
+  margin: 5% auto;
+  justify-content: center;
+  align-items: center;
+}
+#userBasicInfo h1{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#userBasicInfo table{
+  margin: auto;
+  border: 1px solid;
+  padding: 2% 5% 2% 5%;
+  flex-direction: column;
+}
+#userBasicInfo input{
+  margin: 0 5px 0 5px;
+  border: 1px solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#terminalMenu{
+  background: black;
+  width: 95%;
+  height: 96%;
+  flex-direction: column;
+  padding-left: 5%;
+  padding-top: 20px;
+
+}
+
+#terminalMenu > div {
+  margin-bottom: 50px;
+}
+
+#tmBtnCntr{
+  display: none;
+  flex-direction: column;
+}
+
+.terminalMenuCol{
+  margin-left: 5%;
+}
+
+.terminalMenuCol span:nth-child(1){
+  display: flex;
+}
+
+
+
+.terminalMenuCol h2{
+  margin-left: 30px;
+}
+
+.terminalMenuCol span:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.terminalMenuCol span:nth-child(2) button{
+  width: 200px;
+  text-align: left;
+  border: none;
+  margin-left: 60px;
+
+}
+
+#remoteAccessBtn:hover {
+  background: #ed1873;
+  color: black;
+}
+
+#travelBtn:hover {
+  background: #5cc07d;
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#playerRepository{
+  justify-content: center;
+  margin: 0 auto;
+}
+
+
+
+#playerRepository main{
+  width: 50%;
+}
+
+#playerRepository table img{
+  width: 32px;
+}
+
+#playerRepoScreen > figure > img{
+  width: auto;
+  height: 100%;
+  max-height: 288px;
+  margin: -50px auto 0 auto;
+  padding: 5px ;
+}
+
+
+#repoWpnStats{
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  margin: -50px auto;
+}
+
+
+
+#playerRepository figure{
+  width: 70%;
+  height: 50%;
+  margin: 1.25% auto 1.25% auto;
+  border: 2px solid;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#playerRepository article{
+  width: 70%;
+  padding: 10px 0 10px 0;
+  margin: auto;
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+#playerRepoScreen article{
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+#playerEquipScreen > figure > img{
+  width: auto;
+  height: 100%;
+  max-height: 288px;
+  margin: 0 auto;
+  padding: 5px ;
+}
+
+
+#playerRepository .equipSlot{
+  width: 64px;
+  height: 64px;
+  border: 2px solid;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+
+#playerRepository :is(.col1, .col2, .col3){
+    display: flex;
+
+    flex-direction: row;
+}
+
+
+
+#playerRepoScreen :is(.col1, .col2, .col3){
+  margin: 0 auto;
+  width: 90%;
+}
+
+#playerEquipScreen :is(.col1, .col2, .col3){
+  margin: 0 auto;
+  width: 238px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#bunkerCourtyard{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+#bunkerCourtyard h1{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: none;
+}
+
+#armyOverview{
+  width: 30%;
+  height: 100%;
+  margin: auto;
+}
+
+#armyOverview table{
+  width: 90%;
+  margin: auto;
+}
+
+#armyOverview button{
+  border: 1px solid;
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+#armyOverview p{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+
+
+#formationOverview{
+  width: 70%;
+  height: 100%;
+  overflow-y: scroll;
+  background: none;
+  overflow-x: hidden;
+}
+
+#formationOverview > main{
+  width: auto;
+}
+
+.armyFlank{
+  min-width: 500px;
+  width: 620px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  height: 170px;
+  overflow: hidden;
+  background: none;
+  margin: 0 auto;
+
+}
+
+
+.unitSlot{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 200px;
+}
+.unitSlotStats{
+  text-align: left;
+  width: 40px;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.unitSlot > figure > figcaption{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.unitSlot > figure > figcaption > p{
+  margin-top: 14px;
+}
+
+.unitSlot > figure > figcaption > img{
+  width: 32px;
+  height: 32px;
+}
+
+.unitSlot > figure > .armyPosUnitSelect{
+  width: 200px;
+  height: 110px;
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  margin: -10px 0 0;
+  display: none;
+}
+
+.unitSlot > figure > .armyPosUnitSelect > img{
+  width: 32px;
+  border: 1px solid;
+  border-radius: 5px;
+
+}
+
+.armyFlank > div > aside > figure > span > img{
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+}
+
+.armyFlank > div > aside > figure{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Government=====================================================================*/
+#bunkerGovernment{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*battlefield=====================================================================*/
+#battleGrid{
+  display: flex;
+  width: 1920px;
+  height: 480px;
+  margin: 5px auto 0 auto;
+  background: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  position: relative;
+}
+
+#battlefieldfBg{
+display: flex;
+position: absolute;
+width: 1920px;
+height: 480px;
+margin: 5px auto 0 auto;
+}
+
+#battleGrid .bf-col{
+  background: none;
+  width: 100%;
+  height: 33.3333%;
+  display: flex;
+  background: none;
+}
+
+.battleGrideTile{
+  width: 160px;
+  height: 160px;
+  background: none;
+  text-align: center;
+  border-radius: 5px;
+
+}
+
+
+.battleGrideTile:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px white;
+    -moz-box-shadow:inset 0px 0px 0px 2px white;
+    box-shadow:inset 0px 0px 0px 2px white;
+    background-color: rgba(255,255,255,0.3)
+}
+
+.battleGrideTile img{
+  background: none;
+  width: 93.4%;
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+
+#bfCamera{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background: none;
+  position: relative;
+  margin: auto;
+}
+
+#divisionStats{
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  margin: 0px auto;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+#divisionStats img{
+  width: 16px;
+  height: 16px;
+}
+#divisionStats input{
+  width: 21px;
+  font-size: 0.8em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*==========================================================*//*=====================================================*/
+/*=====================duel.html=======================================================================================*/
+/*==========================================================*//*====================================================*/
+
+#interactionPause, #messageNotifCntr, #battleEndMenu, #hitBoxCntr, #hitSelfCntr, #charImgCntr, #barMenu,  #playerProgressBarMenu, #playerBattleControls, #battleMenuCntr, #battleMoveDataTab, #enemyDisplayTab div, #hitBoxCntr div, #hitOutcomeDisplay, #enemySlotIndicate, .slotIndicator{
+  display: none;
+}
+
+
+
+/*progress bars========================================*/
+progress{
+  margin: 1px auto 1px;
+  height: 10px;
+  display: block;
+  float: left;
+  color: white;
+}
+
+
+
+
+ .hpBar::-webkit-progress-bar {
+  background-color: black;
+  border: 1px solid rgba(238, 42, 123, 0.5);
+}
+
+ .hpBar::-webkit-progress-value {
+  background-color: #EE2A7B;
+}
+
+/*enemy rot meters*/
+.rotBar::-webkit-progress-bar {
+  background-color: black;
+  border: 1px solid rgba(102, 45, 145, 0.7);
+}
+
+.rotBar::-webkit-progress-value {
+  background-color: #662D91;
+}
+
+/*enemy slot indicator========================================*/
+#enemySlotIndicate{
+  position: absolute;
+  background: none;
+  justify-content: center;
+  top: 7%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 90%;
+  height: 3%;
+}
+#enemySlotIndicate :is(div, img){
+  background: none;
+
+}
+
+#enemySlotIndicate div{
+  width: 33%;
+  height: 0;
+}
+
+#enemySlotIndicate img{
+  width: 12%;
+  min-width: 60px;
+  height: auto;
+  margin: 0 46% 0 46%;
+}
+/*Hit boxes========================================*/
+#hitOutcomeDisplay{
+  position: absolute;
+  top: 6%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 70%;
+  margin: 0 auto;
+  height: 5%;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5em;
+  background: none;
+  justify-content: center;
+}
+
+#hitOutcomeDisplay strong{
+  font-weight: normal;
+  margin-left: 30px;
+}
+
+
+/*Hit boxes========================================*/
+
+#hitBoxCntr{
+  position: absolute;
+  width: 33.33%;
+  height: auto;
+  background: none;
+  z-index: 100;
+}
+
+#hitBoxCntr div{
+  background: rgba(0,0,0,0.7);
+  border: 3px solid;
+  position: absolute;
+}
+
+
+#hitBoxCntr div p{
+  background: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20%;
+  border-bottom: 1px solid;
+}
+
+.hitBoxes button{
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  min-width: 100px;
+}
+
+
+
+#hitBoxCntr > div:nth-child(1){
+  margin: 17% 0% 0% 42%;
+}
+#hitBoxCntr > div:nth-child(2){
+  margin: 40% 0% 0% 50%;
+}
+#hitBoxCntr > div:nth-child(3){
+  margin: 35% 0% 0% 70%;
+}
+#hitBoxCntr > div:nth-child(4){
+  margin: 45% 0% 0% 30%;
+}
+#hitBoxCntr > div:nth-child(5){
+  margin: 60% 0% 0% 64%;
+}
+#hitBoxCntr > div:nth-child(6){
+  margin: 65% 0% 0% 43%;
+}
+
+/*hit self========================================*/
+#hitSelfCntr{
+  position: absolute;
+  width: 50%;
+  height: auto;
+  background: none;
+  z-index: 100;
+  margin: 10% 25% 0 25%;
+}
+
+#hitSelfCntr div{
+  width: 70%;
+  min-width: 300px;
+  height: 300px;
+  background: rgba(0,0,0,0.7);
+  border: 3px solid;
+  text-align: center;
+  margin: auto;
+}
+#hitSelfCntr p{
+  background: none;
+  border-bottom: 1px solid;
+}
+
+#hitSelf{
+  margin: 100px auto;
+  width: 40%;
+
+}
+#hitSelfCntr > div > table > tbody{
+
+}
+
+#hitSelf .hitSelfStatName{
+  text-align: left;
+
+}
+#hitSelf .hitSelfStatVal{
+  text-align: right;
+
+}
+
+
+/*enemy display========================================*/
+#enemyDisplayTab{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  background: none;
+}
+
+#enemyDisplayTab div{
+  width: 20%;
+  height: 100%;
+  min-width: 250px;
+  margin: 7% auto;
+  flex-direction: column;
+  justify-content: center;
+  background: none;
+}
+
+
+#enemyDisplayTab div span input{
+  border: 1px solid;
+}
+
+
+
+
+#enemyDisplayTab img{
+  height: 90%;
+  margin: 10% auto;
+  background: none;
+}
+
+
+
+
+
+
+
+
+
+
+/*enemy stat meters===========================================*/
+#enemyDisplayTab span{
+  width: 90%;
+  margin: 1px auto 5px auto;
+  height: 12px;
+}
+
+#enemyDisplayTab p, #playerProgressBarMenu p{
+  margin-top: -5px;
+  background: none;
+}
+
+#enemyNameBar {
+  display: flex;
+}
+
+#enemyNameBar strong{
+  font-weight: normal;
+  margin: -5px 10px 0;
+}
+
+#enemyHpBar progress{
+  width: 80%;
+}
+
+#enemyRotBar progress{
+  width: 60%;
+}
+
+
+
+
+/*player menu========================================*/
+#playerProgressBarMenu, #battleMenuCntr, #playerBattleControls{
+  justify-content: center;
+}
+
+
+
+#playerProgressBarMenu{
+  width: 33%;
+  flex-direction: column;
+}
+#playerProgressBarMenu > aside{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+#playerProgressBarMenu figure{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.25%;
+  width: 40%;
+  min-width: 250px;
+  margin-bottom: 0 auto;
+}
+
+#playerProgressBarMenu span{
+  width: 100%;
+  margin: 0 auto;
+}
+
+#playerProgressBarMenu progress{
+  width: 80%;
+  margin: 0 3% 0 3%;
+}
+
+#battleMenuBackBtn{
+  display: inline;
+  width: 33px;
+  height: 33px;
+}
+
+#playerProgressBarMenu > aside > span{
+  margin: 1.1%;
+  display: flex;
+  justify-content: right;
+}
+
+#playerProgressBarMenu > aside > p{
+  margin: 5px 10px 0;
+
+}
+
+#staminaBar{
+  width: 50px;
+  height: 30px;
+  color: #00FF7F;
+  border: 2px solid #00FF7F;
+  margin-left: 15px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+#playerBattleControls input{
+  width: 50px;
+  margin-left: 15px;
+  border: 1px solid white;
+  border-radius: 3px;
+  text-align: center;
+}
+
+#playerBattleControls button{
+  min-width: 200px;
+  margin-bottom: 2px;
+}
+
+#playerBattleControls table{
+  padding: 0 2% 0 2%;
+
+}
+
+
+#battleMenuCntr{
+  width: 33%;
+  flex-wrap: wrap;
+  margin: 0% 2% 0 2%;
+}
+#battleMenuCntr button{
+  border: 4px solid;
+  height: 50px;
+  min-width: 150px;
+  margin: 0% 2% 0 2%;
+}
+
+#battleMoveDataTab{
+  color: white;
+  width: 50%;
+  min-width: 325px;
+  margin: 30px 20px 0 20px;
+  max-width: 453.5px;
+  height: 100px;
+  border: 1px solid;
+}
+
+#battleMoveDataTab article{
+  flex-direction: column;
+}
+
+#battleMoveDataTab .battleMoveData{
+  width: 70%;
+}
+
+#battleMoveDataTab .battleMoveDesc{
+  width: 30%;
+}
+
+#battleMoveDataTab p{
+  font-weight: normal;
+  font-size: 1.0em;
+  margin: 0px 0px 0px 5px;
+}
+
+#battleMoveDataTab span{
+  display: flex;
+}
+
+#battleMoveDataTab .moveDataDesc{
+  margin-top: 8px;
+}
+
+#battleMoveDataTab .moveDataIcon{
+  width: 100px;
+  float: right;
+  padding: 0 10% 0 10%;
+  border-left: 1px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*interaction pause // battle end menu========================================*/
+#interactionPause, #battleEndMenu{
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: black;
+  z-index: 100;
+
+}
+/*interaction pause========================================*/
+#interactionPause{
+  z-index: 100;
+  opacity: 0;
+}
+
+/* battle end menu========================================*/
+#battleEndMenu{
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+#battleEndMenu .battleEndTerminal{
+  width: 50%;
+  min-width: 500px;
+  border: 2px solid;
+  background-color: white;
+  height: 500px;
+  margin: 5% auto;
+}
+
+#battleEndMenu .battleEndBtnCntr{
+  width: 100%;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: black;
+  margin: 20px auto 0 auto;
+}
+
+.battleEndBtnCntr table {
+  width: 100%;
+
+}
+
+
+.battleEndBtnCntr tr{
+  height: 150px;
+}
+
+.battleEndBtnCntr td{
+  width: 100%;
+  display: flex;
+}
+
+
+#battleEndMenu h1{
+  text-align: center;
+  margin: auto;
+}
+#battleEndMenu button{
+  margin: auto;
+  width: 150px;
+  height: 45px;
+  border: 2px solid;
+}
+
+
+
+
+
+
+
+
+
+/*message notif box*/
+#messageNotifCntr{
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+  min-width: 170px;
+  max-height: 70px;
+  max-width: 300px;
+  min-height: 120px;
+  width: 30%;
+  height: 30%;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  top: 5.5%;
+  left: 5.5%;
+}
+
+
+#messageNotifCntr h2{
+  background: none;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
+
+/*smallest size == w934 x h760*/
+
+@media screen and (max-height: 870px) {
+  #playerRepository figure, #playerRepository article{
+    margin: -2px auto -2px auto;
+  }
+  #playerRepository figure img{
+    padding: 0;
+  }
+  #playerRepoScreen > article > div.col3{
+    margin-bottom: -15px;
+  }
+
+  #terminalFrame{
+    height: 65%;
+}
+
+#battlefieldMenuCntr{
+  margin: 3% auto;
+}
+
+}
+
+
+@media screen and (max-width: 1240px)  {
+  .armyFlank{
+    width: 590px;
+  }
+  #playerRepoScreen :is(.col1, .col2, .col3){
+    display: flex;
+    justify-content: center;
+  }
+
+  #battlefieldMenuCntr{
+    margin: 5% auto;
+  }
+}

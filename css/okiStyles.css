@@ -1,0 +1,1160 @@
+/*GENERAL STYLES========================================*/
+*{
+  margin: 0px;
+  padding: 0px;
+  background-color: black;
+  color: white;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+button{
+  border: 1px solid;
+  min-width: 25px;
+  min-height: 25px;
+}
+
+button [name=closeWindow]{
+  border: 1px solid;
+  width: 40px;
+  height: 40px;
+}
+
+img{
+  background: none;
+}
+
+table, td, tr, tbody{
+  background: none;
+}
+/*Fonts========================================*/
+
+body{
+  font-family: 'VT323', monospace;
+  font-size: 1.3em;
+}
+
+th , h1, h2, h3{
+  font-weight: normal;
+}
+
+h1{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5em;
+}
+
+button{
+  border: 1px solid;
+  font-family: 'Press Start 2P', cursive;
+}
+
+input{
+  font-family: 'VT323', monospace;
+  border: none;
+  font-size: 1.2em;
+}
+
+
+
+/*scrollbar========================================*/
+*::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: none;        /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;    /* color of the scroll thumb */
+  border-radius: 0px;       /* roundness of the scroll thumb */
+  border: 3px solid black;  /* creates padding around scroll thumb */
+}
+
+
+
+/*display none setup========================================*/
+#interactionPause, #messageNotifCntr, #battleEndMenu, #playerStatMenu, #enemyStatMenu, #decisonTree, #treeDescCntr, #bunkerDirectory, #openBrief, #hitBoxCntr, #hitSelfCntr,  #charImgCntr, #factionSelectionScreen, #userBasicInfo{
+  display: none;
+}
+
+
+
+#actionBtnCntr, #barMenu, #playerProgressBarMenu, #playerBattleControls, #battleMenuCntr, #battleMoveDataTab{
+  display: none;
+}
+
+
+#bunkerMap, #commCenter, #worldMap, #wpnDepotRoom, #wpnStatWindow{
+  display: none;
+}
+
+#enemyDisplayTab div, #hitBoxCntr div, #hitOutcomeDisplay, #enemySlotIndicate, .slotIndicator{
+  display: none;
+}
+
+
+
+
+
+
+
+
+/*page interaction buttons========================================*/
+/*command center*/
+#ministerBtnCntr{
+  background: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+#ministerBtnCntr button{
+  width: 250px;
+  height: 80%;
+  margin: auto 3% auto 3%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+#ministerBtnCntr p{
+  padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+/*action menu styles========================================*/
+#actionMenu{
+  width: 90%;
+  height: 20%;
+  border: 2px solid;
+  margin: auto;
+
+}
+
+#actionMenu button{
+  border: 3px solid;
+}
+
+#actionBtnCntr button{
+  width: 10%;
+  min-width: 100px;
+  height: 40px;
+  margin: 0 1%;
+  display: none;
+  text-align: center;
+}
+
+#actionBtnCntr{
+  margin: 2% auto;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*UI Frame========================================*/
+
+#terminal{
+  border: 2px solid;
+  width: 90%;
+  height: 70%;
+  margin: 20px auto;
+  background-color: white;
+  padding-top: 20px;
+
+}
+
+#stage{
+  width: 100%;
+  height: 100%;
+  background-size: 1200px;
+  background-position: center bottom;
+  background-repeat: repeat-x;
+
+}
+
+
+
+
+
+
+/*Character Selection========================================*/
+/*Frame-----------------------*/
+#playerStatMenu > section, #enemyStatMenu > section{
+  width: 33.333%;
+  height: 100%;
+  float: left;
+  font-family: 'VT323', monospace;
+  background: none;
+  margin: 0 auto;
+
+}
+
+#playerStatMenu{
+  height: 100%;
+  overflow: hidden;
+}
+
+#playerStatMenu input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+}
+
+
+#enemyStatMenu  input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+}
+
+/*col 1-----------------------*/
+
+
+#playerClassDisplay {
+  width: 45%;
+  height: 45%;
+  margin: 3% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+#playerCharImg{
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+  max-height: 250px;
+  object-fit: contain;
+}
+
+#playerDesc figcaption{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+#playerDesc figcaption p{
+  min-width: 200px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+}
+
+#playerDesc h2{
+  text-align: center;
+  margin: 3% auto 1% auto;
+}
+
+
+
+/*move set style*/
+#playerMoveSetCntr{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+#playerMoveSetCntr button{
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  border: 3px solid;
+  margin: 5px;
+}
+
+/*col 2-----------------------*/
+#statDisplay{
+  width: 250px;
+  margin: 10px auto;
+}
+
+#playerMetaData{
+  border-bottom: 1px solid white;
+  margin: auto;
+  min-width: 250px;
+  width: 75%;
+}
+
+#playerMetaData input{
+  text-align: center;
+}
+
+#playerMetaData > tbody > tr > td:nth-child(-n+4){
+  padding-right: 5px;
+}
+
+#classNameDisplay{
+  text-transform: uppercase;
+}
+
+
+#statDisplay:nth-child(-n+2) > tbody > tr > td:nth-child(3){
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 10px;
+  font-size: 0.7em;
+  padding-left: 5px;
+}
+
+#statDisplay:nth-child(-n+2) input{
+  width: 40px;
+  padding: 0 2px 0 2px;
+}
+
+#statDisplay > tbody > tr:nth-child(3) > td{
+  padding-bottom: 15px;
+}
+
+
+
+#statInteract > div{
+  display: flex;
+  justify-content: center;
+  margin: 2% auto;
+}
+#statInteract > div > button {
+  border: 1px solid white;
+  min-width: 100px;
+  width: 20%;
+  height: 30px;
+}
+
+
+
+#statInteract img{
+  width: 30px;
+  padding: 5px;
+  margin-right: 25px;
+  border: 1px solid white;
+  border-radius: 5px;
+
+}
+
+#statInteract button{
+  margin-left: 20px;
+}
+
+
+
+
+
+#statOutput{
+  display: flex;
+  justify-content: center;
+  width: 70%;
+
+}
+
+#statOutput table{
+  width: 20%;
+  margin: auto 3% auto 3%;
+}
+
+
+
+#statOutput table:nth-child(-n+2){
+  border-right: 1px solid white;
+}
+
+#statOutput input{
+  margin-left: 20px;
+
+}
+#statOutput > table > tbody > tr > td:nth-child(1){
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+}
+
+/*col 3-----------------------*/
+#userInfotab{
+  overflow-y: scroll;
+}
+
+#userInfotab div{
+  margin: 2% auto 6% auto;
+}
+
+#statDescHeader{
+  display: flex;
+  margin: auto;
+}
+
+#statDesc figure{
+  width: 80%;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: url(../img/statIcons/statBg.png) repeat center;
+  background-size: contain;
+}
+
+#statDesc figure img{
+  width: 20%;
+  margin: 2% 40% 2% 40%;
+}
+
+#statDesc article{
+  margin-top: 20px;
+}
+
+#statDesc article :is(h1,h2){
+  margin-bottom: 5px;
+}
+
+#statDesc p, #classDesc > p{
+  width: 80%;
+}
+#statDesc table{
+  margin: 2% 0;
+}
+
+/*basic user info========================================*/
+#userBasicInfo  {
+  width: 100%;
+  margin: 5% auto;
+  justify-content: center;
+  align-items: center;
+}
+#userBasicInfo h1{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#userBasicInfo table{
+  margin: auto;
+  border: 1px solid;
+  padding: 2% 5% 2% 5%;
+  flex-direction: column;
+}
+#userBasicInfo input{
+  margin: 0 5px 0 5px;
+  border: 1px solid;
+}
+
+
+
+
+
+/*enemy info tab========================================*/
+
+/*col 1-----------------------*/
+#enemyClassDisplay{
+  width: 55%;
+  height: 75%;
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*col 2-----------------------*/
+#enemyInfoTab h2{
+  text-align: center;
+  margin: 5% auto 2% auto;
+}
+
+#enemyMoveSetCntr{
+  display: flex;
+  width: 85%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#enemyMoveSetCntr button{
+  width: 45%;
+  height: 35px;
+  text-align: center;
+  border: 3px solid;
+  margin: 1%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*faction Selection========================================*/
+#factionSelectionScreen{
+  margin: auto;
+}
+#factionSelectionScreen div{
+  display: flex;
+  justify-content: center;
+}
+
+#factionSelectionScreen figure{
+  width: 15%;
+  height: 170px;
+  text-align: center;
+  margin: 5% 1% 0 1%;
+  border: 2px solid;
+}
+
+#factionSelectionScreen img{
+  width: 95%;
+  margin: 1% auto;
+  border: 1px solid;
+  display: block;
+  padding: 1%;
+}
+/*Decision Tree========================================*/
+#decisonTree{
+  width: 100%;
+  height: 100%;
+}
+
+#decisonTree h1{
+  font-size: 1em;
+}
+
+#decisonTree :is(p , h1){
+  margin: 10px 10px 0;
+}
+
+#decisonTree section{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+#decisonTree div{
+  display: flex;
+  width: 80%;
+  margin: 1% auto;
+}
+
+#decisonTree span{
+  border: 1px solid;
+  width: 180px;
+  height: 90px;
+  margin: 10px;
+}
+
+
+/*confimation window-----------------------*/
+#treeDescCntr{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 0, 0, 0);
+  position: absolute;
+  z-index: 5;
+}
+
+
+
+.treeDesc{
+  width: 40%;
+  height: 50%;
+  z-index: 10;
+  top: 15%;
+  left: 0;
+  right: 0;
+  margin: 7% auto;
+  border: 3px solid;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 0px 10px black;
+}
+
+
+#treeDescCntr > div > span{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#treeDescCntr > div > span > button{
+margin: 10px 10px auto;
+}
+
+#acceptDecision{
+  margin: 8% auto 0 auto;
+  border: 1px solid;
+  width: 100px;
+  height: 45px;
+}
+
+.treeDesc :is(p , h1){
+  margin: 10px 10px 0;
+}
+
+
+
+
+
+
+/*bunkerDirectory========================================*/
+#bunkerMap{
+  width: 100%;
+  height: 100%;
+  background: none;
+  overflow-y: scroll;
+}
+
+
+
+#bunkerMap div{
+  width: 90%;
+  height: 200px;
+  margin: 30px auto 25px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#bunkerMap figure{
+  margin: auto;
+}
+
+#bunkerMap figcaption{
+  margin: -25px 0 5px 0;
+}
+
+#bunkerMap > div > :is(figure:nth-child(1), figure:nth-child(3) ){
+  border: 1px solid;
+  width: 200px;
+  height: 200px;
+}
+
+#bunkerMap > div > figure:nth-child(2){
+  border: 1px solid;
+  width: 60%;
+  height: 200px;
+}
+
+
+
+#bunkerMap figure img{
+  overflow: hidden;
+
+}
+
+#bnkrGateMap img{
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  width: 95%;
+}
+
+#bnkrPQMap img{
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  width: 95%;
+}
+
+/*command center========================================*/
+
+#commCenter{
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+
+
+#openBrief{
+  width: 20%;
+  height: 60%;
+  position: absolute;
+  left: 0;
+  right: 30%;
+  top: 10%;
+  margin: 1% auto;
+  border: 1px solid;
+  text-align: center;
+}
+
+#openBrief h1{
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+#openBrief article{
+  margin: 7% auto;
+  width: 90%;
+  text-align: left;
+}
+
+#openBrief article h1{
+  font-size: 0.7em;
+  margin-bottom: 10px;
+}
+
+#openBrief > span{
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  background: none;
+}
+
+#openBrief button{
+  margin: 1% 10px;
+  width: 40%;
+  padding: 5px;
+  border: 1px solid;
+}
+
+
+/*World Map========================================*/
+#worldMap{
+  width: 100%;
+  height: 100%;
+
+
+}
+.mapDisplay::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+}
+.mapDisplay{
+  height: auto;
+  width: 80%;
+  overflow: scroll;
+  margin: 0.5%;
+  display: flex;
+  justify-content: right;
+}
+
+.mapDisplay figure{
+  width: 1600px;
+  height: 743px;
+  border: 1px dotted;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.mapDisplay span{
+  display: flex;
+  flex-direction: row;
+  background: none;
+}
+
+
+
+
+.mapDisplay button{
+  z-index: 10;
+  opacity: 1;
+  background: rgba(0,0,0,0);
+  border: none;
+}
+
+
+.mapDisplay figcaption{
+  z-index: 50;
+  border: 1px solid;
+  position: absolute;
+  top: 60px;
+  left: 7%;
+  display: flex;
+  justify-content: left;
+  width: 400px;
+  color: white;
+  background: rgba(0,0,0,0.5);
+}
+.mapDisplay figcaption div{
+  background: none;
+  display: flex;
+}
+#worldMap > div > figure > figcaption > div > p{
+  width: 150px;
+  text-align: right;
+  color: white;
+}
+
+#worldMap > div > figure > figcaption > div > p:nth-child(2){
+  width: 35px;
+  height: 25px;
+  text-align: left;
+
+}
+#worldMap > div > figure > figcaption > div:nth-child(1) > p:nth-child(2){
+  transform: rotate(90deg);
+  margin-top: 3px;
+}
+
+
+#rotlandMapSect{
+  width: 600px;
+  height: 350px;
+  z-index: 1;
+}
+
+#northDuneMapSect{
+  width: 240px;
+  height: 370px;
+  z-index: 14;
+}
+
+#northCoastMapSect{
+  width: 260px;
+  height: 270px;
+  z-index: 1;
+}
+
+#northOceanMapSect{
+  width: 500px;
+  height: 743px;
+  z-index: 1;
+}
+
+
+
+.mapDisplay span:nth-child(2){
+  margin-top: -393px;
+}
+
+#westValleyMapSect{
+  width: 240px;
+  height: 250px;
+  margin-top: -50px;
+  border-radius: 300px 550px 100px 700px;
+  z-index: 15;
+
+}
+
+#sulfurValleyMapSect{
+  width: 250px;
+  margin-left: 150px;
+  margin-top: -190px;
+  height: 230px;
+  border-radius: 350px 0px 0px 70px;
+  z-index: 14;
+}
+
+#fungalShoreMapSect{
+  width: 140px;
+  height: 180px;
+  margin-left: 50px;
+  margin-top: -110px;
+  border-radius: 100px 0px 0px 0px;
+  z-index: 14;
+}
+
+#mushDunesMapSect{
+  width: 150px;
+  height: 250px;
+  margin-top: -110px;
+  z-index: 14;
+}
+
+#longCoastMapSect{
+  width: 120px;
+  height: 320px;
+  margin-top: -100px;
+  border-radius: 0px 0px 0px 70px;
+}
+
+
+
+
+.mapDisplay span:nth-child(3){
+  margin-top: -245px;
+}
+
+#northFlMapSect{
+  width: 150px;
+  height: 100px;
+  margin-left: 550px;
+  z-index: 30;
+  border-radius: 50px 50px 0px 80px;
+}
+
+#westFlMapSect{
+  width: 240px;
+  height: 100px;
+  margin-top: 50px;
+  margin-left: -90px;
+  z-index: 32;
+  border-radius: 0px 50px 0px 80px;
+}
+#fungalJungleMapSect{
+  width: 230px;
+  height: 100px;
+  margin-top: 100px;
+  margin-left: -170px;
+  z-index: 31;
+  border-radius: 0px 150px 100px 120px;
+}
+
+
+
+
+
+.mapDisplay span:nth-child(4){
+  margin-top: -215px;
+}
+
+#amaniteValleyMapSect{
+  width: 520px;
+  height: 250px;
+  margin-left: 170px;
+  z-index: 12;
+  border-radius: 0px 0px 50px 250px;
+}
+
+#brokenHillMapSect{
+  width: 400px;
+  height: 345px;
+  margin-top: 90px;
+  margin-left: -690px;
+  border-radius: 0px 350px 0px 0px;
+  z-index: 14;
+}
+
+#southDuneMapSect{
+  width: 600px;
+  height: 235px;
+  margin-top: 200px;
+  margin-left: -50px;
+  border-radius: 0px 100px 0px 0px;
+  z-index: 10;
+}
+
+#islandMapSect{
+  width: 110px;
+  height: 70px;
+  margin-top: 180px;
+  margin-left: -60px;
+  border-radius: 10px 10px 0px 10px;
+  z-index: 20;
+}
+
+#southCoastMapSect{
+  width: 170px;
+  height: 205px;
+  margin-top: 230px;
+  margin-left: -70px;
+}
+
+#longPeninsulaMapSect{
+  width: 60px;
+  height: 130px;
+  margin-top: 230px;
+  margin-left: -30px;
+  border-radius: 30px 30px 0px 30px;
+}
+
+
+
+
+
+.mapDisplay p{
+  background: none;
+  color: black;
+  text-align: left;
+  padding: 1%;
+  font-family: 'VT323', monospace;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#worldMap > #mapLegend{
+  width: 20%;
+  height: auto;
+}
+#mapLegend :is(h1, p){
+  color: white;
+}
+
+#mapLegend h1{
+  font-size: 1em;
+  line-height: 25px;
+  margin: 10px 0 5px 0;
+}
+#mapLegend p{
+  font-size: 1em;
+  margin: 0 0 25px 0;
+}
+
+#mapLegend img{
+  width: 60%;
+  margin: 0 20% 0 20%;
+  padding: 1%;
+  border: 2px solid;
+
+}
+
+/*weapons depot========================================*/
+#wpnDepotRoom{
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+  background-image: url(../img/bunkerRooms/weaponDepotItems/weaponDepotBg.png);
+  background-size: 1100px;
+  background-repeat: repeat;
+  overflow-y: scroll;
+}
+
+
+#wpnDepotRoom figcaption{
+  display: flex;
+  justify-content: center;
+  max-width: 200px;
+  margin: auto auto 10px auto;
+  text-align: center;
+  border: 1px solid;
+}
+
+#wpnDepotRoom input{
+  width: 40px;
+  margin-left: 15px;
+}
+
+
+#weaponDisplays{
+  background: none;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+#wpnDepotRoom .wpnDisplayCol{
+  background: none;
+  margin: 10px 3% 0 3%;
+}
+
+#wpnDepotRoom .wpnDisplayCol figure {
+  margin: 10% auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#wpnDepotRoom .wpnDisplayCol figure img{
+  margin: auto;
+
+}
+
+
+
+#wpnStatWindow{
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  top: 10%;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  position: absolute;
+  border: 2px solid;
+  flex-direction: column;
+}
+
+#wpnStatWindow h1{
+  font-size: 1em;
+  margin: 10px 0px 5% 10px;
+}
+
+#wpnStatWindow article{
+  display: flex;
+  justify-content: center;
+}
+
+#wpnStatImg{
+  width: 90%;
+
+}
+
+#wpnStatWindow article figure{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#wpnStatWindow article figure:nth-child(3){
+  height: 100%;
+}
+
+#wpnStatWindow > span:nth-child(3){
+  display: flex;
+  justify-content: center;
+  margin: 5% auto;
+}
+
+#wpnStatWindow > span:nth-child(3) > button{
+  width: 130px;
+  margin: 0 5px 0 5px;
+}

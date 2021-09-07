@@ -8,41 +8,172 @@ window.addEventListener("keyup", function(eventKey) {
 });
 
 
+
 const terminalKeys = [];
 
 
 function terminalKeyExecute() {
   //terminalKeys[0];
   if (terminalState == true) {
+    if(terminalKeys[0]){
+    }
 
     if(terminalPage == 'home'){
       //TAB
       if(terminalKeys[9] ){
       }
       //SPACEBAR
-      if(terminalKeys[32] ){
-        terminalPage = 'charCreate';
-        setTerminalPage();
+      else if(terminalKeys[32] ){
+        setTerminalPage('charCreate');
       }
       //ENTER
-      if(terminalKeys[13]){
-        terminalPage = 'charLoad';
-        setTerminalPage();
+      else if(terminalKeys[13]){
+        setTerminalPage('charLoad');
       }
       //BACKSPACE
-      if(terminalKeys[8] ){
+      else if(terminalKeys[8] ){
       }
 
+    }else if(terminalPage == 'charCreate'){
+        //TAB
+        if(terminalKeys[9] ){
+        }
+        //SPACEBAR
+        else if(terminalKeys[32] ){
+          setTerminalPage('charCreate');
+        }
+        //ENTER
+         if(terminalKeys[13]){
+          setPlayerName();
+          saveVar();
+          if(playerStats.name !== '' ){
+            currentRoom = 'pq';
+            closeTerminal('pq',-5,-5);
+          }else{
+            alert('name');
+          }
+        }
+        //BACKSPACE
+        else if(terminalKeys[8] ){
+          setTerminalPage('home');
+        }
+
+  }else if(terminalPage == 'charLoad'){
+    //TAB
+    if(terminalKeys[9] ){
+    }
+    //SPACEBAR
+    else if(terminalKeys[32] ){
+      setTerminalPage('charCreate');
+    }
+    //ENTER
+    else if(terminalKeys[13]){
+      setPlayerName();
+      saveVar();
+        currentRoom = 'pq';
+        closeTerminal('pq',-5,-5);
+    }
+    //BACKSPACE
+    else if(terminalKeys[8] ){
+      setTerminalPage('home');
     }
 
-    if(terminalPage == 'charCreate'){
-      //SPACEBAR
+}else if(terminalPage == 'statistics'){
+  //TAB
+  if(terminalKeys[9] ){
+    setTerminalPage('repo');
+  }
+  //SPACEBAR
+  else if(terminalKeys[32] ){
+    setTerminalPage('terminalMenu');
+  }
+  //ENTER
+  else if(terminalKeys[13]){
+
+  }
+  //BACKSPACE
+  else if(terminalKeys[8] ){
+    closeTerminal('','','');
+  }
+
+}else if(terminalPage == 'repo'){
+  //TAB
+  if(terminalKeys[9] ){
+    setTerminalPage('statistics');
+  }
+  //SPACEBAR
+  else if(terminalKeys[32] ){
+    setTerminalPage('terminalMenu');
+  }
+  //ENTER
+  else if(terminalKeys[13]){
+
+  }
+  //BACKSPACE
+  else if(terminalKeys[8] ){
+    closeTerminal('','','');
+  }
+
+}else if(terminalPage == 'terminalMenu'){
+  //TAB
+  if(terminalKeys[9] ){
+  }
+  //SPACEBAR
+  else if(terminalKeys[32] ){
+  }
+  //ENTER
+  else if(terminalKeys[13]){
+
+  }
+  //BACKSPACE
+  else if(terminalKeys[8] ){
+    closeTerminal('','','');
+  }
+}
+  else if(terminalPage == 'cc'){
+    //TAB
+    if(terminalKeys[9] ){
+    }
+    //SPACEBAR
+    else if(terminalKeys[32] ){
+    }
+    //ENTER
+    else if(terminalKeys[13]){
 
     }
-
-  }else{return}
+    //BACKSPACE
+    else if(terminalKeys[8] ){
+      closeTerminal('','','');
+    }
 }
 
+
+
+
+
+
+  //else{return}
+}else if(terminalState == false){
+  //ENTER
+  if(terminalKeys[13] && terminalPage == 'terminal'){
+    accessTerminal('statistics');
+  }
+  else if(terminalKeys[13] && terminalPage == 'commandTable'){
+    accessTerminal('cc');
+  }
+  else if(terminalKeys[13] && currentRoom == 'elev00'){
+    currentRoom = 'elev01';
+    tileCases(elev01MapLayout, elev01MapParameter);
+    objectTileCases(elevObjectLayout, elevObjectParameter);
+
+  }
+  else if(terminalKeys[13] && currentRoom == 'elev01'){
+    currentRoom = 'elev00';
+    tileCases(elev00MapLayout, elev00MapParameter);
+    objectTileCases(elevObjectLayout, elevObjectParameter);
+  }
+}
+}
 
 
 
@@ -59,10 +190,15 @@ var imgUrl = '#';
 
 
 
-function setTerminalPage() {
+function setTerminalPage(page) {
   resetTerminalMenu();
-
-
+  terminalKeys[0];
+  if(page !== '0'){
+    terminalPage = page
+  }else{
+    //terminalPage = page;
+  }
+  terminalLocation();
   if(terminalPage == 'home' && terminalState == true){
     $('#stage').css('display', 'flex');
     $('#actionMenu :is(button:nth-child(-n+' + 2 + '))').css('display', 'flex');
@@ -70,12 +206,10 @@ function setTerminalPage() {
     setCoreBtn(2, 0,1,2,0,   0,'New Player','Load Player', 0,       'none', 'charCreate','charLoad', 'none');
 
     $('#actionMenu > button:nth-child(' + 1 + ')').click(function () {
-      terminalPage = 'charCreate';
-      setTerminalPage();
+      setTerminalPage('charCreate');
     });
     $('#actionMenu > button:nth-child(' + 2 + ')').click(function () {
-      terminalPage = 'charLoad';
-      setTerminalPage();
+      setTerminalPage('charLoad');
     });
   }
 
@@ -96,14 +230,13 @@ function setTerminalPage() {
       saveVar();
       if(playerStats.name !== '' ){
         currentRoom = 'pq';
-        closeTerminal();
+        closeTerminal('pq',-5,-5);
       }else{
         alert('name');
       }
     });
     $('#actionMenu > button:nth-child(' + 2 + ')').click(function () {
-      terminalPage = 'home';
-      setTerminalPage();
+      setTerminalPage('home');
     });
 
   }
@@ -119,77 +252,43 @@ function setTerminalPage() {
     $('#actionMenu > button:nth-child(' + 1 + ')').click(function () {
       setPlayerName();
       saveVar();
-
-        currentRoom = 'pq';
-        closeTerminal();
-
+      closeTerminal('pq',-5,-5);
     });
     $('#actionMenu > button:nth-child(' + 2 + ')').click(function () {
-      terminalPage = 'home';
-      setTerminalPage();
+      setTerminalPage('home');
     });
-    //keys-------------
-    //SPACE
-    if(terminalKeys[13]){
-      setPlayerName();
-      saveVar();
-      currentRoom = 'pq';
-      closeTerminal();
-    }
-    //BACKSPACE
-    if(terminalKeys[8] ){
-    }
-    //TAB
-    if(terminalKeys[9] ){
-    }
-  }
   }
 
 
 
 
-  if(terminalPage == 'pq' && terminalState == true){
+
+  if(terminalPage == 'statistics' && terminalState == true){
     $('#playerStatMenu').css('display', 'flex');
     $('#playerRepository').css('display', 'none');
     characterLoad();
     $('#charNameCreate').css('display','none');
     $('#charNameLoad').css('display','flex');
-
+    setCoreBtn(3, 1,2,0,3,   'Repository','Menu',0, 'Close');
     //buttons-------------
     $('#actionMenu > button:nth-child(' + 1 + ')').click(function () {
-      setPlayerName();
-      saveVar();
-      currentRoom = 'pq';
-      closeTerminal();
-
+      setTerminalPage('repo');
     });
     $('#actionMenu > button:nth-child(' + 2 + ')').click(function () {
-      terminalPage = 'home';
-      setTerminalPage();
+      setTerminalPage(terminalMenu);
     });
-    //keys-------------
-    //SPACE
-    if(terminalKeys[13]){
-      setPlayerName();
-      saveVar();
-      if(playerStats.name !== ''){
-        currentRoom = 'pq';
-        closeTerminal();
-      }
-    }
-    //BACKSPACE
-    if(terminalKeys[8] ){
-    }
-    //TAB
-    if(terminalKeys[9] ){
-    }
+    $('#actionMenu > button:nth-child(' + 3 + ')').click(function () {
+      closeTerminal('','','');
+    });
+
+
   }
 
 
   if(terminalPage == 'repo' && terminalState == true){
     $('#playerRepository').css('display', 'flex');
     $('#playerStatMenu').css('display', 'none');
-    setCoreBtn(3,1,'Statistics','pq',2,3,0,'0','0');
+    setCoreBtn(3, 1,2,0,3,   'Statitics','Menu',0, 'Close');
   }
 
 
@@ -200,46 +299,39 @@ function setTerminalPage() {
     $('#terminalMenu').css('display', 'flex');
     $('.terminalMenuCol > #tmBtnCntr').css('display','flex');
 
-    $('#actionMenu :is(button:nth-child(1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Exit');
-
 
 
     $('#tmCol-privateQuarters > span:nth-child(2) > button:nth-child(1)').click(function () {
-      terminalPage = 'pq';
-      setTerminalPage();
+      setTerminalPage('statistics');
     });
 
     $('#tmCol-commandCenter > span:nth-child(2) > button:nth-child(1)').click(function () {
-      terminalPage = 'cc';
-      setTerminalPage();
+      setTerminalPage('cc');
     });
     $('#tmCol-courtyard > span:nth-child(2) > button:nth-child(1)').click(function () {
-      terminalPage = 'cy';
-      setTerminalPage();
+      setTerminalPage('cy');
     });
     $('#tmCol-gouvernment > span:nth-child(2) > button:nth-child(1)').click(function () {
-      terminalPage = 'gov';
-      setTerminalPage();
+      setTerminalPage('gov');
     });
 
 
 
 
     $('#tmCol-privateQuarters > span:nth-child(2) > button:nth-child(2)').click(function () {
-      currentRoom = 'pq';
-      closeTerminal();
+      closeTerminal('pq',-6,-2.5);
     });
     $('#tmCol-commandCenter > span:nth-child(2) > button:nth-child(2)').click(function () {
-      currentRoom = 'cc';
-
-      closeTerminal();
+      closeTerminal('cc',-10,-2.5);
     });
     $('#tmCol-courtyard > span:nth-child(2) > button:nth-child(2)').click(function () {
-      currentRoom = 'cy';
-      closeTerminal();
+      closeTerminal('','','');
     });
-    setCoreBtn(1,0,'-','#',0,1,0,'0','0');
+    setCoreBtn(1, 0,0,0,1,   0,0,0, 'Close');
+    //buttons-------------
+    $('#actionMenu > button:nth-child(' + 1 + ')').click(function () {
+      closeTerminal('','','');
+    });
 }
 
 
@@ -248,7 +340,7 @@ function setTerminalPage() {
 if(terminalPage == 'cc' && terminalState == true){
   imgUrl = 'img/terminal/bunkerRooms/generalsTable.png'
   $('#terminalFrame').css('background-image', 'url(' + imgUrl + ')');
-  setCoreBtn(3,1,'Missions','wm',2,3,0,'0','0');
+  setCoreBtn(3, 1,2,0,3,   'Map Room','Missions',0,'Back');
 }
 
 
@@ -270,20 +362,21 @@ if(terminalPage == 'gov' && terminalState == true){
 
 }
 
+}
 
 
 
 
 
-
-
-
-function closeTerminal(){
+function closeTerminal(cR,x,y){
   resetTerminalMenu();
   terminalPage = 'initial';
   terminalState = false;
+  terminalLocation();
+  $('#canvasHp').css('display','flex')
+  $('#canvasSp').css('display','flex')
+  $('#canvasRp').css('display','flex');
   imgUrl = '#';
-  terminalKeys['empty'];
   $('#actionMenu :is(button:nth-child(-n+6))').off('click');
   $('#terminalFrame').css('background-image', 'url(' + imgUrl + ')');
   $('#stage').css('display', 'none');
@@ -293,12 +386,22 @@ function closeTerminal(){
   $('#bunkerCourtyard').css('display', 'none');
   $('#actionMenu :is(button:nth-child(-n+6))').css('display', 'none');
   $('#camera').css('display','flex');
+  if (cR !== '' || x !== ''){
+    currentRoom = cR;
+    roomDisplace = [x,y];
+  }else {
+    return
+  }
+
+
   if(currentRoom == 'pq'){
     tileCases(pqMapLayout, pqMapParameter);
     objectTileCases(pqObjectLayout, pqObjectParameter);
+    //roomDisplace = [-6,-2.5];
   }else if (currentRoom == 'cc') {
     tileCases(ccMapLayout, ccMapParameter);
     objectTileCases(ccObjectLayout, ccObjectParameter);
+    //roomDisplace = [-10,-2.5];
   }else if (currentRoom == 'gate') {
     tileCases(gateMapLayout, gateMapParameter);
     objectTileCases(gateObjectLayout, gateObjectParameter);
@@ -324,20 +427,16 @@ function closeTerminal(){
 
 
 
-
-
-
-
 function setCoreBtn(totalBtn, tab,space,enter,bksp,   tText,sText,eText, bText){
   $('#actionMenu :is(button:nth-child(-n+' + totalBtn + '))').css('display', 'flex');
 
   $('#actionMenu > button:nth-child(' + tab +') > p:nth-child(1)').text(tText);
   $('#actionMenu > button:nth-child(' + tab +') > p:nth-child(2)').text('(TAB)');
-  $('#actionMenu > button:nth-child(' + tab + ')').css('color', 'white');
-  $('#actionMenu > button:nth-child(' + tab + ') > p:nth-child(-n+2)').css('color', 'white');
+  $('#actionMenu > button:nth-child(' + tab + ')').css('color', palette.purpleHex);
+  $('#actionMenu > button:nth-child(' + tab + ') > p:nth-child(-n+2)').css('color', palette.purpleHex);
 
   $('#actionMenu > button:nth-child(' + space +') > p:nth-child(1)').text(sText);
-  $('#actionMenu > button:nth-child(' + space +') > p:nth-child(2)').text('(SACE)');
+  $('#actionMenu > button:nth-child(' + space +') > p:nth-child(2)').text('(SPACE)');
   $('#actionMenu > button:nth-child(' + space + ')').css('color', palette.yellowHex);
   $('#actionMenu > button:nth-child(' + space + ') > p:nth-child(-n+2)').css('color', palette.yellowHex);
 
@@ -366,7 +465,6 @@ function resetTerminalMenu(){
   for (var i = 0; i < 7; i++) {
     $('#actionMenu > button:nth-child(' + i +')').css('color','white');
   }
-    terminalKeys['empty'];
     $('#camera').css('display','none');
     $('#playerStatMenu').css('display', 'none');
     $('#playerRepository').css('display', 'none');
@@ -375,8 +473,68 @@ function resetTerminalMenu(){
     $('#bunkerCourtyard').css('display', 'none');
     imgUrl = '#';
     $('#terminalFrame').css('background-image', 'url(' + imgUrl + ')');
-
     $('#actionMenu :is(button:nth-child(-n+6))').css('display', 'none');
     $('#actionMenu :is(button:nth-child(-n+4))').off('click');
+}
 
+
+
+
+
+
+
+
+
+
+
+
+var terminalLocationCrIndex = '';
+var terminalLocationTpIndex = '';
+var terminalLocationPlayerName = 'Anon';
+
+//Termianl Location Index-----------
+function terminalLocation() {
+
+  if (playerStats.name !== ''){
+    terminalLocation = playerStats.name;
+  }
+
+
+  if (terminalState == false) {
+    findCurrentRoom();
+    $('#currentRoomIndex > p').text('file:///User/' + terminalLocationPlayerName + '/oki-5-2.2/Location/' + terminalLocationCrIndex + '/');
+  }else if (terminalState == true) {
+    findCurrentRoom();
+    findTerminalPage();
+    $('#currentRoomIndex > p').text('file:///User/' + terminalLocationPlayerName + '/oki-5-2.2/Location/' + terminalLocationCrIndex + '/Terminal/' + terminalLocationTpIndex + '/');
+  }
+}
+
+
+
+
+function findCurrentRoom() {
+  if (currentRoom == 'pq') {
+    terminalLocationCrIndex = 'PrivateQuarters';
+  }else if (currentRoom == 'commandCenter') {
+    terminalLocationCrIndex = 'commandCenter';
+  }else if (currentRoom == 'elev00') {
+    terminalLocationCrIndex = 'elev00';
+  }else if (currentRoom == 'elev01') {
+    terminalLocationCrIndex = 'elev01';
+  }else{
+    terminalLocationCrIndex = '#';
+  }
+}
+
+function findTerminalPage() {
+  if (terminalPage == 'initial') {
+    terminalLocationTpIndex = 'hi';
+  }else if (terminalPage == 'home'){
+    terminalLocationTpIndex = 'home';
+  }else if (terminalPage == 'statistics'){
+    terminalLocationTpIndex = 'statistics';
+  }else{
+    terminalLocationTpIndex = '#';
+  }
 }

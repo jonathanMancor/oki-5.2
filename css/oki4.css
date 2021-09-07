@@ -22,26 +22,50 @@ button{
   font-size: 1.2em;
   border: none;
 }
+button:focus { outline: none; }
+input:focus { outline: none; }
+
 button[name='actionMenuBtn']{
-  width: 20%;
+  width: 200px;
   background: black;
-  height: 50px;
+  height: 75px;
   border: 4px solid;
   margin: auto 2% auto 2%;
   font-family: 'VT323', monospace;
   font-size: 1.5em;
+
+  flex-direction: column;
   justify-content: center;
 }
+button[name='playerMoveBtn']{
+  width: 50px;
+  height: 45px;
+  border-radius: 3px;
+  background: black;
+  border-top: 2px;
+  border-bottom: 10px;
+  border-left: 2px;
+  border-right: 2px;
+  border-style: solid;
+  margin: auto 2% auto 2%;
+  font-family: 'VT323', monospace;
+  font-size: 1.2em;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  text-transform: capitalize;
+}
+
 button p:nth-child(1){
   font-size: 1em;
   font-family: 'VT323', monospace;
-  margin: 5px 3%;
+  margin: auto;
 }
 
 button p:nth-child(2){
   font-size: 0.7em;
   font-family: 'VT323', monospace;
-  margin: 10px 0;
+  margin: auto;
 }
 
 
@@ -134,6 +158,93 @@ input{
 
 
 
+#terminalMetaData{
+  width: 90%;
+  background: none;
+  height: 80px;
+  position: absolute;
+  margin-top: -26px;
+  z-index: 1000;
+}
+
+
+#currentRoomIndex p{
+  background: none;
+  color: black;
+}
+
+#terminalMetaData > figure{
+  display: flex;
+  background: none;
+  width: 300px;
+  margin: 0;
+}
+
+#canvasHp{
+  height: 30px;
+}
+#canvasSp, #canvasRp{
+  height: 20px;
+}
+
+#canvasHp > img{
+  width: 32px;
+  height: 32px;
+  background: none;
+  margin-top: 10px;
+}
+
+#canvasSp > img{
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  background: none;
+  margin-top: 10px;
+}
+
+#canvasRp > img{
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  background: none;
+  margin-top: 10px;
+}
+
+#terminalMetaData .cntr{
+  width: 200px;
+  border: 1px solid;
+  overflow: hidden;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+#canvasHp > div{
+  background-color: red;
+  height: 16px;
+}
+#canvasSp > div{
+  background-color: green;
+  height: 8px;
+}
+#canvasRp > div{
+  background-color: purple;
+  height: 8px;
+}
+
+
+#terminalMetaData .cntr img{
+  width: 210px;
+  height: auto;
+  position: relative;
+  background: none;
+}
+
+#terminalMetaData > figure > p{
+  margin: 20px 10px 0;
+}
+
+
+
 
 
 
@@ -193,14 +304,32 @@ input{
   width: 90%;
   min-width: 920px;
   height: 200px;
-
   border: 6px solid;
   border-top: 0px;
-  margin: 0;
   display: flex;
   justify-content: center;
   margin: auto;
 }
+
+#playerMoveBtnMenu{
+  width: 180px;
+  height: 50%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+#playerMoveBtnMenu span{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  overflow: hidden;
+}
+
+#playerMoveBtnMenu p {
+  background: none;
+}
+
+
 
 
 /*Battlefield menu-------------------------------*/

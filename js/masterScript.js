@@ -6,7 +6,9 @@ const palette =
 
   greenHex: '#53d39b',
 
-  yellowHex: '#fbb041'
+  yellowHex: '#fbb041',
+
+  purpleHex: '#A459FF'
 }
 
 
@@ -734,11 +736,9 @@ var empty = {
 
 
 $(document).ready(function() {
-
   setResourceStats();
   setGameData(gameData,empireFactionGameData);
   setStage();
-//  terminalKeyExecute();
  });
 
 
@@ -784,24 +784,28 @@ function setResourceStats() {
 
 
 function setStage(){
-  var scene = 'empty';
-  scene = 'homePage';
+  var currentRoom = 'empty';
+  currentRoom = 'homePage';
+  //terminalPage
 
-  if(scene == 'homePage'){
-    terminalPage = 'home';
-    accessTerminal();
+
+  if(currentRoom == 'homePage'){
+    accessTerminal('home');
+    loadVar();
   }
 }
 
 
 
 function characterCreation() {
+  displayInitialStatDesc();
   toggleStatAllocationBtn();
   chooseClassBtns();
   setPlayerStats();
 }
 
 function characterLoad() {
+  displayInitialStatDesc();
   loadVar();
   setPlayerStats();
   toggleStatAllocationBtn();

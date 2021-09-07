@@ -129,8 +129,8 @@ const pqObjectLayout = [
   0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,
+  0,0,0,0,0,0,3,0,
+  0,0,0,0,0,0,4,0,
   0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,
@@ -149,6 +149,13 @@ const pqObjectParameter = {
 const pqTerminal = {
   x: 5 * tileSize,
   y: 0.5 * tileSize,
+  w: 1 * tileSize,
+  h: 2 * tileSize
+}
+
+const pqBed = {
+  x: 5 * tileSize,
+  y: 5.5 * tileSize,
   w: 1 * tileSize,
   h: 2 * tileSize
 }
@@ -261,8 +268,8 @@ const ccTerminal = {
 const commandTable = {
   x: 3 * tileSize,
   y: 0 * tileSize,
-  w: 3 * tileSize,
-  h: 4 * tileSize
+  w: 4 * tileSize,
+  h: 3.5 * tileSize
 }
 
 const ccDoorElev01 = {
@@ -355,7 +362,7 @@ const elevObjectLayout = [
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,
-  0,0,0,21,21,21,27,0,0,0,
+  0,0,0,21,24,24,27,0,0,0,
   0,0,0,22,25,25,28,0,0,0,
   0,0,0,22,25,25,28,0,0,0,
   0,0,0,23,26,26,29,0,0,0,
@@ -1544,6 +1551,7 @@ ctxO.drawImage(mapObject, parameter.tileW * 0, parameter.tileH * 0, parameter.ti
 var mapAlpha = 1;
 var elevDirection = 'none';
 function animate(){
+  movementKeyReset();
   ctxS1.clearRect( 0,0, story1Canvas.width, story1Canvas.height);
   ctxP.clearRect( 0,0, playerCanvas.width, playerCanvas.height);
   ctxO.clearRect( 0,0, objectCanvas.width, objectCanvas.height);
@@ -1651,22 +1659,26 @@ function defineTileMaps() {
 
 
 
-function accessTerminal() {
-
-
-  //alert(terminalPage);
+function accessTerminal(page) {
+  terminalLocation();
+  //console.log(terminalPage);
   terminalState = true;
   if(terminalState = true){
-    $('#camera').css('display','none');
+    $('#camera').css('display','none')
+    $('#canvasHp').css('display','none')
+    $('#canvasSp').css('display','none')
+    $('#canvasRp').css('display','none')
   }
   //terminalPage = 'pq';
   loadVar();
-  setPlayerStats();
-  playerStatDefine();
+  //setPlayerStats();
+  //playerStatDefine();
   //loadUserClass();
   //displayInitialStatDesc();
-  toggleStatAllocationBtn();
-  setTerminalPage();
+  //toggleStatAllocationBtn();
+
+    setTerminalPage(page);
+
 }
 
 
@@ -1706,27 +1718,43 @@ function accessTerminal() {
 
 function movePlayer() {
   if (terminalState == false) {
+    player.speed = 4;
     if(keys[87] ){
         moveUp();
+        movementKeyAnimation(1,1);
     }
     if(keys[65] ){
         moveLeft();
+        movementKeyAnimation(2,1);
     }
     if(keys[83] ){
         moveDown();
+        movementKeyAnimation(2,2);
     }
     if(keys[68] ){
         moveRight();
+        movementKeyAnimation(2,3);
     }
-  }else{return}
-
-
-
-
+  }else if(terminalState == true){
+    player.speed = 0;
+  }
 }
 
 
 ////////////////////////////////on player movement functions////////////////////////////////
+function movementKeyAnimation(m,n) {
+  //$('#playerMoveBtnMenu > span:nth-child('+ m +') > button:nth-child('+ n +')').css('background-color','white');
+  //$('#playerMoveBtnMenu > span:nth-child('+ m +') > button:nth-child('+ n +') > p').css('color','black');
+  $('#playerMoveBtnMenu > span:nth-child('+ m +') > button:nth-child('+ n +')').css('margin-top','10px');
+}
+
+function movementKeyReset() {
+  //$('#playerMoveBtnMenu > span:nth-child(-n+2) > button').css('background','black');
+  //$('#playerMoveBtnMenu > span:nth-child(-n+2) > button > p').css('color','white');
+  $('#playerMoveBtnMenu > span:nth-child(-n+2) > button').css('margin-top','auto');
+}
+
+
 function moveUp() {
   mapCanvas.y += player.speed;
   objectCanvas.y += player.speed;
@@ -1748,13 +1776,10 @@ function moveDown() {
 }
 function moveRight() {
 
-mapCanvas.x -= player.speed;
-objectCanvas.x -= player.speed;
-
-
+  mapCanvas.x -= player.speed;
+  objectCanvas.x -= player.speed;
   player.frameX = 0;
   player.frameY = 3;
-
 }
 
 
@@ -1846,31 +1871,131 @@ function setMapBorders() {
 
 
 
+  //objectCollide
+
+  if( currentRoom == 'pq' && terminalState == false){
+    if(newCollideDetect(pqTerminal)){
+      forceStop();
+    }else if (newCollideDetect(pqBed)){
+      forceStop();
+    }
+    if (newTripDetect(pqTerminal)) {
+      terminalPage = 'terminal';
+
+    }else if (newTripDetect(pqBed)) {
+      terminalPage = 'playerBed';
+
+    }else {
+      terminalPage = 'initial';
+    }
 
 
 
 
-
-
-//objectCollide
-
-if( currentRoom == 'pq'){
-  if(newCollideDetect(pqTerminal)){
-    forceStop();
+    if(newCollideDetect(pqElevCc)){
+      currentRoom = 'elev01';
+      roomDisplace = [-7.6,-5];
+      orientCameraLayers();
+    }
   }
-  if (newTripDetect(pqTerminal)) {
-    terminalPage = 'terminal';
-  }else {
-    terminalPage = 'initial';
+
+
+
+
+
+
+
+
+
+  else if( currentRoom == 'cc' && terminalState == false){
+
+    if(newCollideDetect(ccTerminal)){
+      forceStop();
+    }
+    if(newTripDetect(ccTerminal)){
+      terminalPage = 'terminal';
+    }else {
+      terminalPage = 'initial';
+    }
+
+
+    if(newCollideDetect(commandTable)){
+      forceStop();
+    }if(newTripDetect(commandTable)){
+      terminalPage = 'commandTable';
+    }
+
+
+
+    if(newCollideDetect(ccDoorElev01)){
+      currentRoom = 'elev01';
+      roomDisplace = [-4.5,-2];
+      orientCameraLayers();
+    }
+  }
+
+
+
+  if( currentRoom == 'gate' && terminalState == false){
+    if(newCollideDetect(gateDoorElev00)){
+      currentRoom = 'elev00';
+      roomDisplace = [-4.5,-2];
+      orientCameraLayers();
+    }
+
+    if(newCollideDetect(gate)){
+      terminalPage = 'gate';
+    }else {
+      terminalPage = 'initial';
+    }
   }
 
 
 
 
-  if(newCollideDetect(pqElevCc)){
-    currentRoom = 'elev01';
-    roomDisplace = [-7.6,-5];
-    orientCameraLayers();
+
+
+
+
+  if( currentRoom == 'elev00' && terminalState == false){
+
+    if(newCollideDetect(elev00DoorGate)){
+      currentRoom = 'gate';
+      roomDisplace = [-4.5,-13];
+      orientCameraLayers();
+    }
+
+
+    if(newCollideDetect(elev01Elev00)){
+      terminalPage = '00Elev01';
+    }else {
+      terminalPage = 'initial';
+    }
+  }
+
+
+
+
+  if( currentRoom == 'elev01' && terminalState == false){
+
+    if(newCollideDetect(elev01DoorPq)){
+      currentRoom = 'pq';
+      roomDisplace = [-1,-5];
+      orientCameraLayers();
+    }
+
+    if(newCollideDetect(elev01DoorCc)){
+      currentRoom = 'cc';
+      roomDisplace = [-5.5,-9];
+      orientCameraLayers();
+    }
+
+
+    if(newCollideDetect(elev01Elev00)){
+      terminalPage = '01Elev00';
+    }else {
+      terminalPage = 'initial';
+    }
   }
 }
 
@@ -1882,98 +2007,6 @@ if( currentRoom == 'pq'){
 
 
 
-else if( currentRoom == 'cc'){
-
-  if(newCollideDetect(ccTerminal)){
-    forceStop();
-  }
-  if(newTripDetect(ccTerminal)){
-    terminalPage = 'terminal';
-  }else {
-    terminalPage = 'initial';
-  }
-
-
-  if(newCollideDetect(commandTable)){
-    forceStop();
-  }if(newTripDetect(commandTable)){
-    terminalPage = 'commandTable';
-  }
-
-
-
-  if(newCollideDetect(ccDoorElev01)){
-    currentRoom = 'elev01';
-    roomDisplace = [-4.5,-2];
-    orientCameraLayers();
-  }
-}
-
-
-
-if( currentRoom == 'gate'){
-  if(newCollideDetect(gateDoorElev00)){
-    currentRoom = 'elev00';
-    roomDisplace = [-4.5,-2];
-    orientCameraLayers();
-  }
-
-  if(newCollideDetect(gate)){
-    terminalPage = 'gate';
-  }else {
-    terminalPage = 'initial';
-  }
-}
-
-
-
-
-
-
-
-
-if( currentRoom == 'elev00'){
-
-  if(newCollideDetect(elev00DoorGate)){
-    currentRoom = 'gate';
-    roomDisplace = [-4.5,-13];
-    orientCameraLayers();
-  }
-
-
-  if(newCollideDetect(elev01Elev00)){
-    terminalPage = '00Elev01';
-  }else {
-    terminalPage = 'initial';
-  }
-}
-
-
-
-
-if( currentRoom == 'elev01'){
-
-  if(newCollideDetect(elev01DoorPq)){
-    currentRoom = 'pq';
-    roomDisplace = [-1,-5];
-    orientCameraLayers();
-  }
-
-  if(newCollideDetect(elev01DoorCc)){
-    currentRoom = 'cc';
-    roomDisplace = [-5.5,-9];
-    orientCameraLayers();
-  }
-
-
-  if(newCollideDetect(elev01Elev00)){
-    terminalPage = '01Elev00';
-  }else {
-    terminalPage = 'initial';
-  }
-}
-
-}
 
 
 
@@ -2057,20 +2090,22 @@ $("body").ready(function(){
 
 
 function setBunkerRooms() {
+  terminalLocation();
+  $('#playerMoveBtnMenu').css('display','none');
 
-  if (terminalPage == 'initial') {
-    $('#actionMenu :is(button:nth-child(-n+6))').css('display', 'none');
+  if (terminalPage == 'initial' && currentRoom !== 'homePage') {
+    $('#actionMenu > button:nth-child(-n+6)').css('display', 'none');
     $('#actionMenu :is(button:nth-child(-n+6))').off('click');
+    $('#playerMoveBtnMenu').css('display','flex');
+    $('#playerMoveBtnMenu button:nth-child(-n+4)').css('display','flex');
   }
 
 
   if (terminalPage == 'terminal' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Access Terminal');
+    setInteractBtn('Access Terminal');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
-      terminalPage = 'pq';
-      accessTerminal();
+      accessTerminal('statistics');
 
     });
 
@@ -2078,35 +2113,30 @@ function setBunkerRooms() {
 
 
   if (terminalPage == 'playerBed' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Sleep');
+    setInteractBtn('sleep');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
-      accessTerminal();
-      terminalPage = 'pq';
+      accessTerminal('pq');
     });
   }
 
 
   if (terminalPage == 'commandTable' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Speak');
+    setInteractBtn('Speak');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
 
-      accessTerminal();
-      terminalPage = 'cc';
+      accessTerminal('cc');
     });
 
   }
 
 
   if (terminalPage == 'gate' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Start Expedition');
+    setInteractBtn('Leave Bunker');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
-      accessTerminal();
+      accessTerminal('commandCenter');
       //location.assign('okiBattle.html');
       terminalPage = 'commandCenter';
 
@@ -2119,28 +2149,37 @@ function setBunkerRooms() {
 
 
   if (terminalPage == '01Elev00' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Elevator: Up');
+    setInteractBtn('Elevator Up');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
-
-
-
-
-
         currentRoom = 'elev00';
-
-
     });
   }
 
   if (terminalPage == '00Elev01' && terminalState == false) {
-    $('#actionMenu :is(button:nth-child(-n+1))').css('display', 'inline');
-    $('#actionMenu > button:nth-child(1)').text('Elevator: Down');
+    setInteractBtn('Elevator Down');
 
     $('#actionMenu > button:nth-child(1)').click(function () {
 
       currentRoom = 'elev01';
     });
   }
+
+}
+
+
+function setWorldInteractKey() {
+  if(terminalKeys[9] && terminalState == false){
+    accessTerminal('statistics');
+  }
+}
+
+
+
+function setInteractBtn(text) {
+  $('#actionMenu :is(button:nth-child(-n+' + 1 + '))').css('display', 'flex');
+  $('#actionMenu > button:nth-child(' + 1 +') > p:nth-child(1)').text(text);
+  $('#actionMenu > button:nth-child(' + 1 +') > p:nth-child(2)').text('(ENTER)');
+  $('#actionMenu > button:nth-child(' + 1 + ')').css('color', palette.greenHex);
+  $('#actionMenu > button:nth-child(' + 1 + ') > p:nth-child(-n+2)').css('color', palette.greenHex);
 }

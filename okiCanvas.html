@@ -19,6 +19,33 @@
 
 <section id="terminalFrame">
 
+  <section id='terminalMetaData'>
+    <span id='currentRoomIndex'><p></p></span>
+
+    <figure id='canvasHp'><img src="img/icons/stats/hpStat.png" alt="">
+      <div class="cntr">
+        <img src="img/icons/stats/hpStat.png" alt="">
+      </div>
+      <p>72</p>
+    </figure>
+
+    <figure id='canvasSp'><img src="img/icons/stats/spStat.png" alt="">
+      <div class="cntr">
+        <img src="img/icons/stats/hpStat.png" alt="">
+      </div>
+      <p>72</p>
+    </figure>
+
+    <figure id='canvasRp'><img src="img/icons/stats/rpStat.png" alt="">
+      <div class="cntr">
+        <img src="img/icons/stats/hpStat.png" alt="">
+      </div>
+      <p>72</p>
+    </figure>
+
+  </section>
+
+
 <section id="camera">
   <canvas id="story1Canvas">
     Your browser does not support the HTML canvas tag.
@@ -295,13 +322,13 @@
       <table id="repoWpnStats">
         <tr>
           <td><img src="img/icons/stats/attStat.png" alt=""></td>
-          <td><input type="text" name="" value="0"></td>
+          <td><input readonly type="text" name="" value="0"></td>
 
           <td><img src="img/icons/stats/dexStat.png" alt=""></td>
-          <td><input type="text" name="" value="0"></td>
+          <td><input readonly type="text" name="" value="0"></td>
 
           <td><img src="img/icons/stats/accStat.png" alt=""></td>
-          <td><input type="text" name="" value="0"></td>
+          <td><input readonly type="text" name="" value="0"></td>
         </tr>
       </table>
     </figure>
@@ -1166,7 +1193,19 @@
   <button type="button" name="actionMenuBtn"><p></p><p></p></button>
   <button type="button" name="actionMenuBtn"><p></p><p></p></button>
   <button type="button" name="actionMenuBtn"><p></p><p></p></button>
+
+  <div id='playerMoveBtnMenu'>
+    <span>
+      <button type="button" name="playerMoveBtn"><p>w</p></button>
+    </span>
+    <span>
+    <button type="button" name="playerMoveBtn"><p>a</p></button>
+    <button type="button" name="playerMoveBtn"><p>s</p></button>
+    <button type="button" name="playerMoveBtn"><p>d</p></button>
+  </span>
+  </div>
 </section>
+
 
 
 <script src="js/jquery-3.5.1.js"></script>
